@@ -1,0 +1,15 @@
+I have been a soft serve ice cream fanatic since childhood. To emphasize, specifically soft serve, not “hard” ice cream. since moving to nyc, i’ve noticed that there are a lot of places that offer soft serve seasonally, and not just ice cream shops. you’ll find really interesting good quality soft serve at some speakeasies!
+
+there are many instagram food accounts that seem to share this passion for soft serve, but there’s no comprehensive list for all the soft serve that nyc has to offer. a list like that would have to be updated relatively frequently. as someone who maintains many bookmarks on google maps sorted into food categories, this got me thinking: how is there no better way to map out all places that offer soft serve and also share that with others? I also want other people’s recommendations as well.
+
+enter s.crème: a soft-serve app for the people by the people
+
+the vision for this app is simple: users should be able to review any business that offers soft serve. the review will be structured by the 5 qualities that I believe are essential to the soft serve experience™. the qualities are as follows: sweetness, creaminess, flavours, cones, naturalness.
+
+the user is asked to rank each quality out of 5. the user can also leave a detailed review and photos.
+
+on each business’s page, a radar chart will be created with the average of the rankings of the 5 qualities.
+
+if the business hasn’t been added already to the app, then the user can add it.
+
+app is still a wip, but take a peek at the design on figma:
