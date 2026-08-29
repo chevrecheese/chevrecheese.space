@@ -22,7 +22,7 @@ copy() {
 echo "Setting up public assets..."
 
 # Logo
-LOGO=$(ls "$ROOT"/*chevrecheese_logo.png 2>/dev/null | head -1)
+LOGO=$(ls "$ROOT"/*chevrecheese_logo_crop.png 2>/dev/null | head -1)
 copy "$LOGO" "$PUBLIC/logo.png"
 
 # Design homepage thumbnails
