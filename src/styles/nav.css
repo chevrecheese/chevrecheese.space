@@ -29,8 +29,9 @@
 }
 
 .nav-link {
-  font-size: 0.8rem;
-  font-weight: 300;
+  font-family: var(--font-nav);
+  font-size: 1rem;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-decoration: none;
   text-transform: uppercase;
@@ -94,7 +95,7 @@
   }
 
   .nav-link {
-    font-size: 0.72rem;
+    font-size: 1rem;
   }
 
   .nav-logo img {

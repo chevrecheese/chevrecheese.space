@@ -48,8 +48,39 @@ while IFS= read -r -d '' f; do
   copy "$f" "$IMG/s-creme/$base"
 done < <(find "$ROOT/s.creme" -maxdepth 1 -type f -iname '*.png' -print0)
 
-# Chainmaille video + poster
+# Chainmaille images (skip huge .tif) + video
+# Note: sips can crush some iPhone Display P3 JPEGs; copy originals and let CSS size them.
+mkdir -p "$IMG/chainmaille"
+while IFS= read -r -d '' f; do
+  base=$(basename "$f")
+  case "$base" in
+    "Jonathan Shevonne Jan 09 2026 (1).jpg") dest="jonathan-shevonne-1.jpg" ;;
+    "Jonathan Shevonne Jan 09 2026 (2).jpg") dest="jonathan-shevonne-2.jpg" ;;
+    "Jonathan Shevonne Jan 09 2026.jpg") dest="jonathan-shevonne.jpg" ;;
+    *) dest=$(echo "$base" | tr '[:upper:]' '[:lower:]' | sed 's/\.jpeg$/.jpg/') ;;
+  esac
+  copy "$f" "$IMG/chainmaille/$dest"
+done < <(find "$ROOT/chainmaille" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) -print0)
+
 copy "$ROOT/chainmaille/IMG_3627.mov" "$VID/chainmaille.mov"
-copy "$ROOT/chainmaille/IMG_5466.jpeg" "$IMG/chainmaille-poster.jpg"
+# Poster from first video frame (not a still photo)
+qlmanage -t -s 1080 -o "$IMG" "$ROOT/chainmaille/IMG_3627.mov" >/dev/null
+if [[ -f "$IMG/IMG_3627.mov.png" ]]; then
+  sips -s format jpeg -s formatOptions 80 "$IMG/IMG_3627.mov.png" --out "$IMG/chainmaille/video-poster.jpg" >/dev/null
+  rm -f "$IMG/IMG_3627.mov.png"
+  echo "  copied: video-poster.jpg (from video)"
+else
+  echo "  missing: video poster" >&2
+fi
+
+# About page assets
+mkdir -p "$IMG/about"
+copy "$ROOT/about/github.png" "$IMG/about/github.png"
+copy "$ROOT/about/instagram.png" "$IMG/about/instagram.png"
+if [[ -f "$ROOT/about/shev_softserve.png" ]]; then
+  # Resize large source photo for web
+  sips -Z 1600 "$ROOT/about/shev_softserve.png" --out "$IMG/about/shev-softserve.png" >/dev/null
+  echo "  copied: shev-softserve.png (resized)"
+fi
 
 echo "Done."
