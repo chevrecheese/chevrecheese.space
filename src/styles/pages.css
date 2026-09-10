@@ -445,7 +445,7 @@ h3.sah-heading.sah-kicker--block {
 
 .sah-stagger__label {
   grid-area: label;
-  margin: calc(var(--stagger-left-h) * 0.4) 0 0;
+  margin: calc(var(--stagger-left-h) * 0.4) 0 0 32px;
   justify-self: center;
   white-space: nowrap;
   text-align: center;
@@ -463,33 +463,74 @@ h3.sah-heading.sah-kicker--block {
   grid-area: caption;
   margin: 0;
   max-width: 18rem;
-  justify-self: center;
-  text-align: center;
+  justify-self: start;
+  text-align: left;
   white-space: normal;
+  transform: translateX(30%);
+}
+
+.sah-finale {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: 2rem clamp(1.5rem, 4vw, 3.5rem);
+  margin: 3rem 0 0;
+}
+
+.sah-finale__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding-top: 0.5rem;
+}
+
+.sah-finale .sah-kicker--block,
+.sah-finale h3.sah-heading.sah-kicker--block {
+  margin: 0;
+  max-width: none;
+}
+
+.sah-finale__note {
+  margin: 0;
+  max-width: 22rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .sah-tilt {
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 1rem 0 2.5rem;
+  align-items: flex-start;
+  gap: 0;
+  margin: 0;
+  min-height: min(52vw, 420px);
+  padding: 1rem 0 2rem;
 }
 
 .sah-tilt img {
-  width: min(38%, 300px);
-  border-radius: 28px;
+  width: min(52%, 280px);
+  aspect-ratio: 3 / 4;
+  border-radius: 36px;
   object-fit: cover;
 }
 
 .sah-tilt__a {
-  transform: rotate(8deg);
+  transform: rotate(-14deg);
   z-index: 1;
+  position: relative;
+  left: 4%;
 }
 
 .sah-tilt__b {
-  transform: rotate(-8deg);
+  transform: rotate(12deg);
   z-index: 2;
+  position: relative;
+  left: -8%;
+  top: 18%;
 }
 
 .sah-figma {
@@ -510,7 +551,7 @@ h3.sah-heading.sah-figma {
 .sah-figma__icon {
   width: 28px;
   height: auto;
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
 }
 
 @media (max-width: 768px) {
@@ -656,8 +697,64 @@ h3.sah-heading.sah-figma {
     width: 88%;
   }
 
+  /* template_4 / mobile4: heading → tilted pair → note → figma */
+  .sah-finale {
+    display: grid;
+    grid-template-areas:
+      'heading'
+      'tilt'
+      'note';
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .sah-finale__copy {
+    display: contents;
+  }
+
+  .sah-finale .sah-kicker--block,
+  .sah-finale h3.sah-heading.sah-kicker--block {
+    grid-area: heading;
+    margin: 0;
+    max-width: none;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .sah-finale__note {
+    grid-area: note;
+    max-width: 16rem;
+    justify-self: end;
+    margin: 0;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .sah-tilt {
+    grid-area: tilt;
+    min-height: min(70vw, 360px);
+    padding: 1.5rem 0;
+  }
+
   .sah-tilt img {
-    width: 80%;
+    width: min(48%, 200px);
+  }
+
+  .sah-tilt__a {
+    left: 0;
+    transform: rotate(18deg);
+  }
+
+  .sah-tilt__b {
+    left: -6%;
+    top: 22%;
+    transform: rotate(-10deg);
+  }
+
+  .sah-figma {
+    justify-content: flex-start;
+    text-align: left;
+    margin-top: 2.5rem;
   }
 }
 

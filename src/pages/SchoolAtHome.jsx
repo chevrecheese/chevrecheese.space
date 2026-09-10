@@ -94,25 +94,27 @@ export default function SchoolAtHome() {
         </h3>
       </section>
 
-      <h3 className="sah-heading sah-kicker--block">The final product</h3>
-
-      <div className="sah-tilt">
-        <img
-          className="sah-tilt__a"
-          src={`${base}/physical-attendance-card-front.jpg`}
-          alt="Attendance card front"
-        />
-        <img
-          className="sah-tilt__b"
-          src={`${base}/physical-attendance-card-back.jpg`}
-          alt="Attendance card back"
-        />
-      </div>
-
-      <p className="sah-copy sah-copy--narrow">
-        There&apos;s still more to come, especially with people starting to complete their
-        attendance cards.
-      </p>
+      <section className="sah-finale">
+        <div className="sah-finale__copy">
+          <h3 className="sah-heading sah-kicker--block">The final product</h3>
+          <p className="sah-finale__note">
+            There&apos;s still more to come, especially with people starting to complete their
+            attendance cards.
+          </p>
+        </div>
+        <div className="sah-tilt">
+          <img
+            className="sah-tilt__a"
+            src={`${base}/physical-attendance-card-front.jpg`}
+            alt="Attendance card front"
+          />
+          <img
+            className="sah-tilt__b"
+            src={`${base}/physical-attendance-card-back.jpg`}
+            alt="Attendance card back"
+          />
+        </div>
+      </section>
 
       <h3 className="sah-heading sah-figma">
         If you&apos;re curious, browse the Figma here:{' '}
