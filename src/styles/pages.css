@@ -319,8 +319,8 @@
 
 .sah-heading {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.15rem;
+  font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -548,6 +548,12 @@ h3.sah-heading.sah-figma {
   white-space: normal;
 }
 
+.sah-figma a {
+  display: inline-flex;
+  line-height: 0;
+  text-decoration: none;
+}
+
 .sah-figma__icon {
   width: 28px;
   height: auto;
@@ -765,7 +771,7 @@ h3.sah-heading.sah-figma {
 
 .case-header h1 {
   font-size: 1.75rem;
-  font-weight: 500;
+  font-weight: 700;
   margin: 0 0 1.5rem;
   letter-spacing: 0.02em;
 }
@@ -785,7 +791,7 @@ h3.sah-heading.sah-figma {
 
 .case-section__title {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   margin: 0 0 1rem;
 }
 
@@ -843,7 +849,7 @@ h3.sah-heading.sah-figma {
 .screme-hero h1 {
   margin: 0;
   font-size: 1.75rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .screme-mockups {

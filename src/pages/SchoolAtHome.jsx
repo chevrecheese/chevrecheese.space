@@ -118,7 +118,14 @@ export default function SchoolAtHome() {
 
       <h3 className="sah-heading sah-figma">
         If you&apos;re curious, browse the Figma here:{' '}
-        <img className="sah-figma__icon" src={`${base}/logo.png`} alt="" />
+        <a
+          href="https://www.figma.com/design/pasrwNqBpI2vnezUhr7Jat/School---Home?node-id=0-1&t=Y7w2en1B3hcmdYqm-1"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open School at Home Figma file"
+        >
+          <img className="sah-figma__icon" src={`${base}/logo.png`} alt="" />
+        </a>
       </h3>
     </article>
   );
