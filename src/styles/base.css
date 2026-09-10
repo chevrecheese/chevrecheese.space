@@ -5,11 +5,11 @@
 }
 
 :root {
-  --color-text: #1a1a1a;
+  --color-text: #554b3c;
   --color-about: #96002d;
-  --color-bg: #ffffff;
+  --color-bg: #f1e5c5;
   --color-bg-dark: #000000;
-  --color-bg-about: #ece3cb;
+  --color-bg-about: #f1e5c5;
   --color-text-about: #554b3c;
   --font-serif: 'Thabit', 'Courier New', monospace;
   --font-nav: 'Metamorphous', 'Times New Roman', serif;
@@ -30,6 +30,15 @@ body {
   color: var(--color-text);
   background: var(--color-bg);
   line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
 }
 
 img {
@@ -91,10 +100,32 @@ button {
   width: 100%;
 }
 
-.about-photo {
+.about-photo-wrap {
+  position: relative;
+  z-index: 0;
   flex: 0 0 auto;
   width: min(40%, 400px);
   max-width: 400px;
+}
+
+.about-photo-frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: 218.21%;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.about-photo {
+  position: relative;
+  z-index: 1;
+  width: 85%;
+  margin: 0 auto;
+  max-width: none;
   aspect-ratio: 3 / 4;
   object-fit: cover;
   object-position: center;
@@ -102,6 +133,8 @@ button {
 }
 
 .about-copy {
+  position: relative;
+  z-index: 2;
   flex: 1 1 0;
   min-width: 0;
   max-width: 36rem;
@@ -113,7 +146,6 @@ button {
   font-size: 0.95rem;
   line-height: 1.7;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--color-text-about);
 }
 
@@ -139,7 +171,6 @@ button {
   margin: 0;
   font-size: 0.85rem;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .about-contact-label {
@@ -201,7 +232,7 @@ body.page-theme--about .nav-link--about {
     gap: 2rem;
   }
 
-  .about-photo {
+  .about-photo-wrap {
     width: 100%;
     max-width: none;
   }

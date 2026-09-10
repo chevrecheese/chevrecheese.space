@@ -11,14 +11,17 @@ export default function About() {
     <article className="page page--about">
       <div className="about-layout">
         <div className="about-main">
-          <img
-            className="about-photo"
-            src="/assets/images/about/shev-softserve.png"
-            alt="Shevonne with a soft serve sculpture"
-          />
+          <div className="about-photo-wrap">
+            <img className="about-photo-frame" src="/assets/images/about/frame_1.png" alt="" />
+            <img
+              className="about-photo"
+              src="/assets/images/about/shev-softserve.png"
+              alt="Shevonne with a soft serve sculpture"
+            />
+          </div>
 
           <div className="about-copy">
-            <p>Hi, I&apos;m shevonne.</p>
+            <p>Hi, I&apos;m Shevonne.</p>
             <p>
               I&apos;m a software engineer, artist, and all around creative based in NYC. My
               background is in traditional art, ranging from watercolour, acrylic, to even

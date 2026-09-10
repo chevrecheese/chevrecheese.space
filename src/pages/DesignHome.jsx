@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Lightbox from '../components/Lightbox.jsx';
 
@@ -10,20 +10,25 @@ const projects = [
     alt: 'School at Home visual identity',
   },
   {
-    type: 'lightbox',
-    src: '/assets/images/design/john-shannon-evite.png',
-    alt: 'John and Shannon wedding evite',
-  },
-  {
     type: 'link',
     to: '/design/attn-ceremony',
     src: '/assets/images/design/attn-ceremony-thumb.png',
     alt: 'Attention Ceremony zine',
   },
+  {
+    type: 'lightbox',
+    src: '/assets/images/design/john-shannon-evite.png',
+    alt: 'John and Shannon wedding evite',
+  },
 ];
 
 export default function DesignHome() {
   const [lightboxSrc, setLightboxSrc] = useState(null);
+
+  useEffect(() => {
+    document.body.classList.add('page-theme--design');
+    return () => document.body.classList.remove('page-theme--design');
+  }, []);
 
   return (
     <section className="page page--design-home">
