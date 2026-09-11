@@ -23,19 +23,40 @@ copy() {
 }
 
 # Max dimension resize (longest side). Falls back to plain copy.
+# Optional 4th arg: JPEG quality 1–100 (default 78).
 resize_max() {
   local src="$1"
   local dest="$2"
   local max="${3:-1600}"
+  local quality="${4:-78}"
   mkdir -p "$(dirname "$dest")"
   if have sips; then
     sips -Z "$max" "$src" --out "$dest" >/dev/null
+    case "$dest" in
+      *.jpg|*.jpeg)
+        sips -s format jpeg -s formatOptions "$quality" "$dest" --out "$dest" >/dev/null
+        ;;
+    esac
     echo "  copied: $(basename "$dest") (resized)"
   elif have magick; then
-    magick "$src" -resize "${max}x${max}>" "$dest"
+    case "$dest" in
+      *.jpg|*.jpeg)
+        magick "$src" -resize "${max}x${max}>" -quality "$quality" "$dest"
+        ;;
+      *)
+        magick "$src" -resize "${max}x${max}>" "$dest"
+        ;;
+    esac
     echo "  copied: $(basename "$dest") (resized)"
   elif have convert; then
-    convert "$src" -resize "${max}x${max}>" "$dest"
+    case "$dest" in
+      *.jpg|*.jpeg)
+        convert "$src" -resize "${max}x${max}>" -quality "$quality" "$dest"
+        ;;
+      *)
+        convert "$src" -resize "${max}x${max}>" "$dest"
+        ;;
+    esac
     echo "  copied: $(basename "$dest") (resized)"
   else
     cp "$src" "$dest"
@@ -121,7 +142,13 @@ while IFS= read -r -d '' f; do
     template_*.png|mobile*.png|copy.txt) continue ;;
   esac
   dest=$(echo "$base" | tr ' @' '-' | tr '[:upper:]' '[:lower:]' | sed 's/\.jpeg$/.jpg/')
-  copy "$f" "$IMG/design/school-at-home/$dest"
+  # Tiny logo mark stays as-is; photos get resized for web
+  if [[ "$dest" == "logo.png" ]]; then
+    copy "$f" "$IMG/design/school-at-home/$dest"
+  else
+    # Displayed ~≤500px CSS; 1400 covers retina, quality 85 for photos
+    resize_max "$f" "$IMG/design/school-at-home/$dest" 1400 85
+  fi
 done < <(find "$ROOT/design/school@home" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print0)
 
 # Attn ceremony images

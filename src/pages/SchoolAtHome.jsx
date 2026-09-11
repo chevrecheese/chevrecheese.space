@@ -22,11 +22,17 @@ export default function SchoolAtHome() {
             className="sah-overlap__back"
             src={`${base}/music-modes-class.jpg`}
             alt="Music modes class at School at Home"
+            width={1400}
+            height={1050}
+            fetchPriority="high"
           />
           <img
             className="sah-overlap__front"
             src={`${base}/mozarella-class.jpg`}
             alt="Mozzarella class at School at Home"
+            width={1050}
+            height={1400}
+            fetchPriority="high"
           />
         </div>
       </section>
@@ -37,6 +43,9 @@ export default function SchoolAtHome() {
             className="sah-arch"
             src={`${base}/brainstorming.jpg`}
             alt="Brainstorming notes for School at Home"
+            width={1050}
+            height={1400}
+            loading="lazy"
           />
           <h3 className="sah-heading">Brainstorming on what we want in the visual identity</h3>
         </div>
@@ -55,6 +64,9 @@ export default function SchoolAtHome() {
             className="sah-arch sah-arches__logo-img"
             src={`${base}/logo-planning.jpg`}
             alt="Logo planning sketches"
+            width={1400}
+            height={1050}
+            loading="lazy"
           />
         </div>
       </section>
@@ -64,8 +76,20 @@ export default function SchoolAtHome() {
       </h3>
 
       <div className="sah-pair">
-        <img src={`${base}/icon-planning-1.jpg`} alt="Icon planning sketches" />
-        <img src={`${base}/icon-planning-2.jpg`} alt="More icon planning sketches" />
+        <img
+          src={`${base}/icon-planning-1.jpg`}
+          alt="Icon planning sketches"
+          width={1050}
+          height={1400}
+          loading="lazy"
+        />
+        <img
+          src={`${base}/icon-planning-2.jpg`}
+          alt="More icon planning sketches"
+          width={1400}
+          height={1050}
+          loading="lazy"
+        />
       </div>
 
       <div className="sah-copy">
@@ -82,12 +106,18 @@ export default function SchoolAtHome() {
           className="sah-arch sah-stagger__left"
           src={`${base}/attendance-card-planning-1.jpg`}
           alt="Attendance card layout sketches"
+          width={1400}
+          height={1050}
+          loading="lazy"
         />
         <h3 className="sah-heading sah-stagger__label">Brainstorming</h3>
         <img
           className="sah-arch sah-stagger__right"
           src={`${base}/attendance-card-planning-2.jpg`}
           alt="Attendance card planning sketches"
+          width={1400}
+          height={1050}
+          loading="lazy"
         />
         <h3 className="sah-heading sah-stagger__caption">
           I hand carved a stamp with the school@Home logo
@@ -107,11 +137,17 @@ export default function SchoolAtHome() {
             className="sah-tilt__a"
             src={`${base}/physical-attendance-card-front.jpg`}
             alt="Attendance card front"
+            width={1400}
+            height={1050}
+            loading="lazy"
           />
           <img
             className="sah-tilt__b"
             src={`${base}/physical-attendance-card-back.jpg`}
             alt="Attendance card back"
+            width={1400}
+            height={1050}
+            loading="lazy"
           />
         </div>
       </section>
@@ -124,7 +160,7 @@ export default function SchoolAtHome() {
           rel="noopener noreferrer"
           aria-label="Open School at Home Figma file"
         >
-          <img className="sah-figma__icon" src={`${base}/logo.png`} alt="" />
+          <img className="sah-figma__icon" src={`${base}/logo.png`} alt="" width={28} height={23} />
         </a>
       </h3>
     </article>

@@ -236,6 +236,7 @@
   max-width: none;
   min-width: 0;
   margin: 0;
+  margin-left: 5vw;
   text-align: left;
   white-space: nowrap;
   position: relative;
@@ -247,8 +248,11 @@
 
 .sah-arches__logo-plan-copy p {
   margin: 0;
+  /* Pull left to match brainstorm left arch (logo-plan +5% vs brainstorm −5%) */
+  margin-left: calc(-0.1 * var(--arches-span));
   text-align: left;
-  width: 90%;
+  /* Keep right edge at copy column (column-gap to logo arch unchanged) */
+  width: calc(100% + 0.1 * var(--arches-span));
 }
 
 .sah-arches .sah-arch {
@@ -267,17 +271,30 @@
 
 /* Tailwind max-lg (≤1023px): wrap text around the right arch */
 @media (max-width: 1023px) {
+  .sah-arches__brainstorm .sah-heading {
+    white-space: normal;
+    min-width: 0;
+  }
+
   .sah-arches__logo-plan {
     display: block;
-    width: min(100%, var(--arches-span));
+    position: relative; /* containing block for absolute .sah-arches__logo-img (sibling of copy) */
+    /* Full content width + no desktop nudge so heading shares left edge with .sah-kicker--block */
+    width: 100%;
+    max-width: none;
     column-gap: 0;
+    transform: none;
+    align-self: stretch;
+    /* Mirror brainstorm arch left inset: centered --arches-span block + translateX(-5%) */
+    --logo-arch-inset: calc((100% - var(--arches-span)) / 2 - 0.05 * var(--arches-span));
   }
 
   .sah-arches__logo-plan-copy {
     position: relative;
     display: block;
     height: auto;
-    min-height: calc(1.3rem + 36px + var(--arch-w) * 3 / 2);
+    /* heading margin-top + heading + p padding-top + half arch after translateY(-50%) */
+    min-height: calc(32px + 1.3rem + 36px + var(--arch-w) * 3 / 4);
   }
 
   .sah-arches__logo-plan-copy .sah-heading {
@@ -285,13 +302,17 @@
     position: static;
     left: auto;
     width: auto;
-    max-width: calc(100% - var(--arch-w) - 1.25rem);
+    max-width: calc(100% - var(--arch-w) - 1.25rem - var(--logo-arch-inset));
     margin: 0;
+    margin-top: 32px;
     transform: none;
+    white-space: normal;
+    text-align: left;
   }
 
   .sah-arches__logo-plan-copy p {
     width: auto;
+    margin-left: 0;
     padding-top: 36px;
   }
 
@@ -301,7 +322,8 @@
     float: right;
     width: var(--arch-w);
     height: calc(var(--arch-w) * 3 / 2);
-    margin: 0 0 0.75rem 1.25rem;
+    /* Match logo translateY(-50%): pull spacer up by half arch height */
+    margin: calc(var(--arch-w) * -3 / 4) var(--logo-arch-inset) 0.75rem 1.25rem;
     border-radius: calc(var(--arch-w) / 2) calc(var(--arch-w) / 2) 10px 10px;
     shape-outside: border-box;
     shape-margin: 12px;
@@ -309,9 +331,9 @@
 
   .sah-arches__logo-img {
     position: absolute;
-    top: calc(1.3rem + 36px);
-    right: 0;
-    transform: none;
+    top: calc(32px + 1.3rem + 36px);
+    right: var(--logo-arch-inset);
+    transform: translateY(-50%);
     margin: 0;
     z-index: 1;
   }
@@ -362,6 +384,14 @@
 
 h3.sah-heading.sah-kicker--block {
   margin-bottom: 48px;
+  /* ≥1024px: match .sah-arches__logo-plan-copy .sah-heading left edge */
+  margin-left: 5vw;
+}
+
+@media (max-width: 1023px) {
+  h3.sah-heading.sah-kicker--block {
+    margin-left: 0;
+  }
 }
 
 .sah-copy .sah-heading {
@@ -426,7 +456,7 @@ h3.sah-heading.sah-kicker--block {
   grid-template-columns: var(--stagger-left-w) var(--stagger-gap) var(--stagger-right-w);
   grid-template-areas:
     'left label right'
-    'caption . right';
+    'caption caption right';
   align-items: start;
   justify-content: center;
   column-gap: 0;
@@ -461,19 +491,18 @@ h3.sah-heading.sah-kicker--block {
 
 .sah-stagger__caption {
   grid-area: caption;
-  margin: 0;
-  max-width: 18rem;
-  justify-self: start;
+  margin: 0 32px 0 0;
+  max-width: 23rem;
+  justify-self: end;
   text-align: left;
   white-space: normal;
-  transform: translateX(30%);
 }
 
 .sah-finale {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
   align-items: start;
-  gap: 2rem clamp(1.5rem, 4vw, 3.5rem);
+  gap: 2rem 48px;
   margin: 3rem 0 0;
 }
 
@@ -482,6 +511,16 @@ h3.sah-heading.sah-kicker--block {
   flex-direction: column;
   gap: 1.75rem;
   padding-top: 0.5rem;
+  margin-left: 5vw;
+  transform: translateX(10vw);
+}
+
+@media (max-width: 1023px) {
+  .sah-finale__copy {
+    margin-left: 0;
+    margin-top: 32px;
+    transform: none;
+  }
 }
 
 .sah-finale .sah-kicker--block,
@@ -491,7 +530,7 @@ h3.sah-heading.sah-kicker--block {
 }
 
 .sah-finale__note {
-  margin: 0;
+  margin: 48px 0 0;
   max-width: 22rem;
   font-size: 1rem;
   font-weight: 500;
@@ -509,6 +548,18 @@ h3.sah-heading.sah-kicker--block {
   margin: 0;
   min-height: min(52vw, 420px);
   padding: 1rem 0 2rem;
+}
+
+@media (min-width: 1024px) {
+  .sah-tilt {
+    transform: translateX(-10vw);
+  }
+}
+
+@media (max-width: 1023px) {
+  .sah-tilt {
+    transform: translateX(5vw);
+  }
 }
 
 .sah-tilt img {
@@ -592,6 +643,8 @@ h3.sah-heading.sah-figma {
   .sah-arches__logo-plan {
     width: 100%;
     transform: none;
+    /* Match centered brainstorm arch (min(70%, 322px)) + translateX(-5%) */
+    --logo-arch-inset: calc((100% - min(70%, 322px)) / 2 - 5%);
   }
 
   .sah-arches__logo-plan-copy .sah-heading {
@@ -619,6 +672,7 @@ h3.sah-heading.sah-figma {
   .sah-arches__logo-plan-copy p::before {
     width: min(45%, 220px);
     height: min(67.5vw, 330px);
+    margin-top: calc(min(67.5vw, 330px) * -0.5);
     border-radius: 999px 999px 10px 10px;
   }
 
@@ -675,6 +729,7 @@ h3.sah-heading.sah-figma {
   .sah-stagger__caption {
     max-width: none;
     width: auto;
+    margin-right: 0;
     justify-self: stretch;
     align-self: center;
     text-align: left;
@@ -721,7 +776,7 @@ h3.sah-heading.sah-figma {
   .sah-finale .sah-kicker--block,
   .sah-finale h3.sah-heading.sah-kicker--block {
     grid-area: heading;
-    margin: 0;
+    margin: 32px 0 0;
     max-width: none;
     justify-self: center;
     text-align: center;
