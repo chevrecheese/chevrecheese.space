@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function Lightbox({ src, alt, onClose }) {
+export default function Lightbox({ src, alt, width, height, onClose }) {
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') onClose();
@@ -28,6 +28,9 @@ export default function Lightbox({ src, alt, onClose }) {
         className="lightbox__image"
         src={src}
         alt={alt}
+        width={width}
+        height={height}
+        fetchPriority="high"
         onClick={(e) => e.stopPropagation()}
       />
     </div>

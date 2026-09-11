@@ -1,7 +1,7 @@
-function Figure({ src, alt, caption }) {
+function Figure({ src, alt, caption, width, height }) {
   return (
     <figure className="case-figure">
-      <img src={src} alt={alt} loading="lazy" />
+      <img src={src} alt={alt} width={width} height={height} loading="lazy" />
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
   );
@@ -18,6 +18,9 @@ export default function SCreme() {
             src={`${base}/s.creme-app-icon.png`}
             alt="s.crème app icon"
             className="screme-hero__icon"
+            width={500}
+            height={500}
+            fetchPriority="high"
           />
           <h1>s.crème</h1>
         </div>
@@ -64,10 +67,27 @@ export default function SCreme() {
         <Figure
           src={`${base}/business-page---many-reviews-mockup.png`}
           alt="Business page mockup with reviews"
+          width={402}
+          height={874}
         />
-        <Figure src={`${base}/add-review-page-mockup.png`} alt="Add review page mockup" />
-        <Figure src={`${base}/add-review-page-mockup2.png`} alt="Add review page mockup variant" />
-        <Figure src={`${base}/softserve.png`} alt="Soft serve illustration" />
+        <Figure
+          src={`${base}/add-review-page-mockup.png`}
+          alt="Add review page mockup"
+          width={402}
+          height={874}
+        />
+        <Figure
+          src={`${base}/add-review-page-mockup2.png`}
+          alt="Add review page mockup variant"
+          width={402}
+          height={874}
+        />
+        <Figure
+          src={`${base}/softserve.png`}
+          alt="Soft serve illustration"
+          width={793}
+          height={1400}
+        />
       </div>
 
       <p className="case-note">App is still a WIP. Figma link coming soon.</p>

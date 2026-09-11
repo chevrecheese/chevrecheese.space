@@ -6,6 +6,10 @@ PUBLIC="$ROOT/public/assets"
 IMG="$PUBLIC/images"
 VID="$PUBLIC/videos"
 
+# Displayed photos are typically ≤~700px CSS; 1400 covers retina. JPEG quality 85 for photos.
+WEB_MAX=1400
+WEB_QUALITY=85
+
 mkdir -p "$IMG/design" "$IMG/design/school-at-home" "$IMG/design/attn-ceremony" "$IMG/s-creme" "$IMG/chainmaille" "$IMG/about" "$VID"
 
 have() { command -v "$1" >/dev/null 2>&1; }
@@ -22,7 +26,7 @@ copy() {
   fi
 }
 
-# Max dimension resize (longest side). Falls back to plain copy.
+# Max dimension resize (longest side). Never upscales. Falls back to plain copy.
 # Optional 4th arg: JPEG quality 1–100 (default 78).
 resize_max() {
   local src="$1"
@@ -30,6 +34,38 @@ resize_max() {
   local max="${3:-1600}"
   local quality="${4:-78}"
   mkdir -p "$(dirname "$dest")"
+
+  # Skip resize when already within max (sips -Z can upscale; avoid that).
+  local dims w h long
+  dims=$(image_size "$src" || true)
+  if [[ -n "$dims" ]]; then
+    w=${dims%% *}
+    h=${dims##* }
+    long=$(( w > h ? w : h ))
+    if (( long <= max )); then
+      case "$dest" in
+        *.jpg|*.jpeg)
+          if have sips; then
+            sips -s format jpeg -s formatOptions "$quality" "$src" --out "$dest" >/dev/null
+            echo "  copied: $(basename "$dest") (recompressed)"
+            return
+          elif have magick; then
+            magick "$src" -quality "$quality" "$dest"
+            echo "  copied: $(basename "$dest") (recompressed)"
+            return
+          elif have convert; then
+            convert "$src" -quality "$quality" "$dest"
+            echo "  copied: $(basename "$dest") (recompressed)"
+            return
+          fi
+          ;;
+      esac
+      cp "$src" "$dest"
+      echo "  copied: $(basename "$dest")"
+      return
+    fi
+  fi
+
   if have sips; then
     sips -Z "$max" "$src" --out "$dest" >/dev/null
     case "$dest" in
@@ -98,21 +134,21 @@ crop_to() {
 
 echo "Setting up public assets..."
 
-# Logo
+# Logo (nav; keep sharp but not oversized)
 shopt -s nullglob
 LOGO_CANDIDATES=("$ROOT"/*chevrecheese_logo_crop.png)
 shopt -u nullglob
 if ((${#LOGO_CANDIDATES[@]})); then
-  copy "${LOGO_CANDIDATES[0]}" "$PUBLIC/logo.png"
+  resize_max "${LOGO_CANDIDATES[0]}" "$PUBLIC/logo.png" 800
 else
   echo "  missing: chevrecheese_logo_crop.png" >&2
 fi
 
 # Design homepage thumbnails
 EVITE_SRC="$ROOT/design/2_john shannon evite.png"
-copy "$EVITE_SRC" "$IMG/design/john-shannon-evite.png"
-copy "$ROOT/design/school@home/logo print background.png" "$IMG/design/school-at-home-thumb.png"
-copy "$ROOT/design/attn ceremony/Ceremony Cover and Back.png" "$IMG/design/attn-ceremony-thumb.png"
+resize_max "$EVITE_SRC" "$IMG/design/john-shannon-evite.png" "$WEB_MAX" "$WEB_QUALITY"
+resize_max "$ROOT/design/school@home/logo print background.png" "$IMG/design/school-at-home-thumb.png" "$WEB_MAX" "$WEB_QUALITY"
+resize_max "$ROOT/design/attn ceremony/Ceremony Cover and Back.png" "$IMG/design/attn-ceremony-thumb.png" "$WEB_MAX" "$WEB_QUALITY"
 
 # Crop school@home cover to the same aspect as the wedding evite
 if [[ -f "$IMG/design/school-at-home-thumb.png" && -f "$IMG/design/john-shannon-evite.png" ]]; then
@@ -146,21 +182,49 @@ while IFS= read -r -d '' f; do
   if [[ "$dest" == "logo.png" ]]; then
     copy "$f" "$IMG/design/school-at-home/$dest"
   else
-    # Displayed ~≤500px CSS; 1400 covers retina, quality 85 for photos
-    resize_max "$f" "$IMG/design/school-at-home/$dest" 1400 85
+    resize_max "$f" "$IMG/design/school-at-home/$dest" "$WEB_MAX" "$WEB_QUALITY"
   fi
 done < <(find "$ROOT/design/school@home" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print0)
 
 # Attn ceremony images
+mkdir -p "$IMG/design/attn-ceremony"
+rm -f "$IMG/design/attn-ceremony/"*
 while IFS= read -r -d '' f; do
   base=$(basename "$f" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
-  copy "$f" "$IMG/design/attn-ceremony/$base"
+  # Small UI crops stay as-is; large photos/spreads get resized
+  dims=$(image_size "$f" || true)
+  if [[ -n "$dims" ]]; then
+    w=${dims%% *}
+    h=${dims##* }
+    long=$(( w > h ? w : h ))
+    if (( long > WEB_MAX )); then
+      resize_max "$f" "$IMG/design/attn-ceremony/$base" "$WEB_MAX" "$WEB_QUALITY"
+    else
+      copy "$f" "$IMG/design/attn-ceremony/$base"
+    fi
+  else
+    resize_max "$f" "$IMG/design/attn-ceremony/$base" "$WEB_MAX" "$WEB_QUALITY"
+  fi
 done < <(find "$ROOT/design/attn ceremony" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -print0)
 
-# s.creme images
+# s.creme images (mockups/icon are already small; large photos get resized)
+mkdir -p "$IMG/s-creme"
+rm -f "$IMG/s-creme/"*
 while IFS= read -r -d '' f; do
   base=$(basename "$f" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
-  copy "$f" "$IMG/s-creme/$base"
+  dims=$(image_size "$f" || true)
+  if [[ -n "$dims" ]]; then
+    w=${dims%% *}
+    h=${dims##* }
+    long=$(( w > h ? w : h ))
+    if (( long > WEB_MAX )); then
+      resize_max "$f" "$IMG/s-creme/$base" "$WEB_MAX" "$WEB_QUALITY"
+    else
+      copy "$f" "$IMG/s-creme/$base"
+    fi
+  else
+    resize_max "$f" "$IMG/s-creme/$base" "$WEB_MAX" "$WEB_QUALITY"
+  fi
 done < <(find "$ROOT/s.creme" -maxdepth 1 -type f -iname '*.png' -print0)
 
 # Chainmaille images (skip huge .tif) + video
@@ -170,11 +234,7 @@ rm -f "$IMG/chainmaille/"*
 while IFS= read -r -d '' f; do
   base=$(basename "$f")
   dest=$(echo "$base" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed 's/\.jpeg$/.jpg/')
-  if [[ "$dest" == *.png ]]; then
-    resize_max "$f" "$IMG/chainmaille/$dest" 1600
-  else
-    copy "$f" "$IMG/chainmaille/$dest"
-  fi
+  resize_max "$f" "$IMG/chainmaille/$dest" "$WEB_MAX" "$WEB_QUALITY"
 done < <(find "$ROOT/chainmaille" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) -print0)
 
 VIDEO=$(find "$ROOT/chainmaille" -maxdepth 1 -type f -iname '*.mov' | head -1 || true)
@@ -212,7 +272,7 @@ copy "$ROOT/about/github.png" "$IMG/about/github.png"
 copy "$ROOT/about/instagram.png" "$IMG/about/instagram.png"
 copy "$ROOT/about/Frame_1.png" "$IMG/about/frame_1.png"
 if [[ -f "$ROOT/about/shev_softserve.png" ]]; then
-  resize_max "$ROOT/about/shev_softserve.png" "$IMG/about/shev-softserve.png" 1600
+  resize_max "$ROOT/about/shev_softserve.png" "$IMG/about/shev-softserve.png" "$WEB_MAX" "$WEB_QUALITY"
 fi
 
 echo "Done."

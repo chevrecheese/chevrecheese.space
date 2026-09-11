@@ -12,11 +12,21 @@ export default function About() {
       <div className="about-layout">
         <div className="about-main">
           <div className="about-photo-wrap">
-            <img className="about-photo-frame" src="/assets/images/about/frame_1.png" alt="" />
+            <img
+              className="about-photo-frame"
+              src="/assets/images/about/frame_1.png"
+              alt=""
+              width={535}
+              height={415}
+              fetchPriority="high"
+            />
             <img
               className="about-photo"
               src="/assets/images/about/shev-softserve.png"
               alt="Shevonne with a soft serve sculpture"
+              width={1050}
+              height={1400}
+              fetchPriority="high"
             />
           </div>
 
@@ -57,7 +67,7 @@ export default function About() {
               rel="noreferrer"
               aria-label="GitHub"
             >
-              <img src="/assets/images/about/github.png" alt="" />
+              <img src="/assets/images/about/github.png" alt="" width={48} height={48} loading="lazy" />
             </a>
             <a
               href="https://www.instagram.com/chevrecheese/"
@@ -65,7 +75,13 @@ export default function About() {
               rel="noreferrer"
               aria-label="Instagram"
             >
-              <img src="/assets/images/about/instagram.png" alt="" />
+              <img
+                src="/assets/images/about/instagram.png"
+                alt=""
+                width={48}
+                height={48}
+                loading="lazy"
+              />
             </a>
           </div>
         </div>

@@ -8,17 +8,23 @@ const projects = [
     to: '/design/school-at-home',
     src: '/assets/images/design/school-at-home-thumb.png',
     alt: 'School at Home visual identity',
+    width: 784,
+    height: 1099,
   },
   {
     type: 'link',
     to: '/design/attn-ceremony',
     src: '/assets/images/design/attn-ceremony-thumb.png',
     alt: 'Attention Ceremony zine',
+    width: 1216,
+    height: 1214,
   },
   {
     type: 'lightbox',
     src: '/assets/images/design/john-shannon-evite.png',
     alt: 'John and Shannon wedding evite',
+    width: 998,
+    height: 1400,
   },
 ];
 
@@ -33,9 +39,18 @@ export default function DesignHome() {
   return (
     <section className="page page--design-home">
       <div className="design-grid">
-        {projects.map((project) => {
+        {projects.map((project, index) => {
           const content = (
-            <img src={project.src} alt={project.alt} className="design-grid__image" />
+            <img
+              src={project.src}
+              alt={project.alt}
+              className="design-grid__image"
+              width={project.width}
+              height={project.height}
+              {...(index === 0
+                ? { fetchPriority: 'high' }
+                : { loading: 'lazy' })}
+            />
           );
 
           if (project.type === 'link') {
@@ -63,6 +78,8 @@ export default function DesignHome() {
         <Lightbox
           src={lightboxSrc}
           alt="John and Shannon wedding evite"
+          width={998}
+          height={1400}
           onClose={() => setLightboxSrc(null)}
         />
       )}

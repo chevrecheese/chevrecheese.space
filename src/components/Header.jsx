@@ -31,7 +31,13 @@ export default function Header() {
         </div>
 
         <NavLink to="/design" className="nav-logo" aria-label="Home">
-          <img src="/assets/logo.png" alt="chevrecheese" />
+          <img
+            src="/assets/logo.png"
+            alt="chevrecheese"
+            width={800}
+            height={597}
+            fetchPriority="high"
+          />
         </NavLink>
 
         <div className="nav-right">
