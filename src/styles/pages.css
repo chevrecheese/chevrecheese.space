@@ -826,6 +826,7 @@ h3.sah-heading.sah-figma {
 
 /* Attention Ceremony — desktop.png layout (colors/type inherit site defaults) */
 .page--attn {
+  position: relative;
   max-width: none;
   width: auto;
   margin-left: 8vw;
@@ -847,14 +848,18 @@ h3.sah-heading.sah-figma {
 
 .attn-copy {
   margin: 0;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.04em;
   line-height: 1.55;
 }
 
 .attn-stage {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   min-height: clamp(28rem, 58vw, 42rem);
+  margin-top: 2rem;
   margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
@@ -878,14 +883,61 @@ h3.sah-heading.sah-figma {
   right: 0;
 }
 
-.attn-copy--privacy {
+@media (min-width: 1024px) {
+  .attn-copy--collab {
+    margin-top: 7rem;
+  }
+}
+
+.attn-bottom-row {
   position: absolute;
   z-index: 2;
-  left: 50%;
-  bottom: 8%;
-  transform: translateX(-50%);
-  width: min(36rem, 90%);
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  pointer-events: none;
+}
+
+.attn-bottom-row .attn-deco {
+  position: static;
+  flex-shrink: 0;
+}
+
+.attn-copy--privacy {
+  position: relative;
+  z-index: 3;
+  flex: 1 1 auto;
+  width: max-content;
+  max-width: none;
+  margin: 0;
   text-align: center;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+@media (min-width: 1024px) {
+  .attn-copy--privacy {
+    flex: 0 1 auto;
+    padding-bottom: 0.15em;
+    /* Pull over green tail (Isabelle); sits above via z-index */
+    left: -10%;
+  }
+
+  .attn-bottom-row .attn-deco--tail-green {
+    z-index: 1;
+  }
+
+  /* fly1 sits in the bottom-row DOM for mobile; on desktop escape to stage placement */
+  .attn-bottom-row .attn-deco--fly1 {
+    position: absolute;
+    /* 36px clear gap after boat’s right edge */
+    left: calc(6% + min(37.2%, 338px) + 36px);
+    top: 36%;
+    bottom: auto;
+    width: min(24%, 210px);
+    transform: rotate(-24deg);
+  }
 }
 
 .attn-deco {
@@ -898,49 +950,44 @@ h3.sah-heading.sah-figma {
 .attn-deco--boat {
   left: 6%;
   top: 38%;
-  width: min(28.6%, 260px);
+  width: min(37.2%, 338px);
 }
 
 .attn-deco--fly1 {
-  left: 42%;
-  top: 22%;
-  width: min(16.1%, 138px);
-  transform: rotate(-18deg);
+  /* 36px clear gap after boat’s right edge */
+  left: calc(6% + min(37.2%, 338px) + 36px);
+  top: 36%;
+  width: min(24%, 210px);
+  transform: rotate(-24deg);
 }
 
 .attn-deco--fly2 {
-  right: 22%;
-  top: 28%;
-  width: min(13.8%, 126.5px);
-  transform: rotate(-22deg);
+  right: 30%;
+  top: -1%;
+  width: min(22.1%, 208px);
 }
 
 .attn-deco--tail-green {
-  left: 2%;
-  top: 52%;
-  width: min(27%, 240px);
+  width: min(48.6%, 432px);
 }
 
 .attn-deco--tail-purple {
-  right: 2%;
+  right: 16%;
   top: 0;
-  width: min(19.2%, 180px);
+  width: min(29.95%, 280.8px);
 }
 
 .attn-deco--tail-pink {
-  left: 50%;
-  bottom: 0;
   width: min(14%, 130px);
-  transform: translateX(-40%);
 }
 
-.attn-mid-deco {
-  display: contents;
+.attn-gallery {
+  margin: 0;
 }
 
 .attn-shots {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: clamp(0.75rem, 1.5vw, 1.25rem);
   margin: 0;
 }
@@ -952,7 +999,7 @@ h3.sah-heading.sah-figma {
   min-width: 0;
 }
 
-.attn-shot img {
+.attn-shot > img:not(.attn-deco) {
   width: 100%;
   height: auto;
   display: block;
@@ -963,26 +1010,76 @@ h3.sah-heading.sah-figma {
   flex: 0.85 1 0;
 }
 
-.attn-deco--fly3 {
-  position: absolute;
-  right: -6%;
-  bottom: -8%;
-  width: min(48.3%, 126.5px);
+/* Desktop fly3: absolute on back shot; mobile instance lives in credit */
+.attn-shot .attn-deco--fly3 {
+  right: -18%;
+  bottom: -15%;
+  width: min(67.62%, 177.1px);
+  height: auto;
   z-index: 2;
-  transform: rotate(12deg);
+  transform: rotate(126deg);
 }
 
 .attn-credit {
-  margin: 1.75rem 0 0;
-  text-align: right;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 1.75rem 2rem;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
-.attn-credit a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  word-break: break-all;
+.attn-credit__row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Credit hosts mobile fly3 + purple; don't inherit about-social icon tint/size */
+.attn-credit.about-social .attn-deco {
+  filter: none;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  /* 4 columns match shot flex ratios (shot--4 is 0.85); credit under fruit (col 3) */
+  .attn-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.85fr;
+    column-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    row-gap: 1.75rem;
+  }
+
+  .attn-shots {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    grid-template-columns: subgrid;
+    gap: 0;
+    align-items: center;
+  }
+
+  .attn-shot {
+    flex: none;
+  }
+
+  .attn-shot--4 {
+    flex: none;
+  }
+
+  .attn-credit {
+    grid-column: 3;
+    grid-row: 2;
+    margin: 0 2rem;
+  }
+
+  /* Desktop: shot fly3 + stage purple; hide credit copies */
+  .attn-credit .attn-deco--fly3,
+  .attn-credit .attn-deco--tail-purple {
+    display: none;
+  }
 }
 
 @media (max-width: 1023px) {
@@ -1009,6 +1106,7 @@ h3.sah-heading.sah-figma {
     width: 100%;
     transform: none;
     text-align: center;
+    white-space: normal;
   }
 
   .attn-copy--intro {
@@ -1018,76 +1116,117 @@ h3.sah-heading.sah-figma {
   .attn-deco--boat {
     position: static;
     order: 2;
-    width: min(54.6%, 260px);
+    width: min(71%, 338px);
     margin: 0 auto;
-  }
-
-  .attn-deco--fly1 {
-    position: absolute;
-    left: auto;
-    right: 6%;
-    top: 14%;
-    width: min(25.3%, 115px);
-    transform: rotate(20deg);
   }
 
   .attn-copy--collab {
     order: 3;
   }
 
-  .attn-mid-deco {
-    order: 4;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 1.25rem;
-    width: 100%;
+  /* Swap: fly2 takes fly1’s former absolute corner placement */
+  .attn-deco--fly2 {
+    position: absolute;
+    left: auto;
+    right: 6%;
+    top: 14%;
+    width: min(32.9%, 150px);
+    margin: 0;
+    transform: rotate(20deg);
   }
 
-  .attn-deco--fly2,
+  /* Row under collab: fly1 → green → pink; privacy wraps below */
+  .attn-bottom-row {
+    position: static;
+    inset: auto;
+    order: 4;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.5rem 0.75rem;
+    width: 100%;
+    pointer-events: auto;
+  }
+
+  .attn-bottom-row .attn-deco--fly1 {
+    position: static;
+    left: auto;
+    top: auto;
+    order: 1;
+    width: min(28%, 130px);
+    transform: rotate(-16deg);
+  }
+
   .attn-deco--tail-green,
   .attn-deco--tail-pink {
     position: static;
-    width: min(26%, 110px);
     margin: 0;
     transform: none;
   }
 
-  .attn-deco--fly2 {
-    transform: rotate(-16deg);
-    width: min(23%, 103.5px);
-  }
-
   .attn-deco--tail-green {
-    width: min(39%, 165px);
+    order: 2;
+    width: min(42%, 220px);
   }
 
-  .attn-deco--tail-purple {
-    display: none;
+  .attn-deco--tail-pink {
+    order: 3;
+    width: min(22%, 100px);
   }
 
   .attn-copy--privacy {
     order: 5;
+    flex: none;
+    width: max-content;
+    max-width: none;
+    align-self: center;
+    left: auto;
+    z-index: 2;
+    white-space: nowrap;
   }
 
   .attn-shots {
     flex-direction: column;
     align-items: stretch;
     gap: 1.25rem;
+    overflow: visible;
+  }
+
+  .attn-shot {
+    overflow: visible;
   }
 
   .attn-shot--4 {
     flex: none;
   }
 
-  .attn-deco--fly3 {
-    width: min(32.2%, 115px);
-    right: 4%;
-    bottom: -4%;
+  /* In-flow in credit: fly3 above label, purple beside IG (×1.5 vs prior mobile) */
+  .attn-shot .attn-deco--fly3,
+  .attn-stage > .attn-deco--tail-purple {
+    display: none;
   }
 
-  .attn-credit {
-    text-align: left;
+  .attn-credit .attn-deco--fly3 {
+    position: static;
+    width: min(42%, 150px);
+    margin: 0;
+    transform: rotate(126deg);
+  }
+
+  .attn-credit .attn-deco--tail-purple {
+    position: static;
+    width: min(33vw, 108px);
+    margin: 0;
+    transform: none;
+    flex-shrink: 0;
+  }
+
+  /* Pull credit up in layout (~40% of block height). transform alone left a gap. */
+  .attn-credit,
+  .attn-credit.about-social {
+    margin: -6.5rem 2rem 0;
+    position: relative;
   }
 }
 
