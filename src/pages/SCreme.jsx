@@ -222,14 +222,21 @@ export default function SCreme() {
           <p className="screme-copy screme-copy--figma">
             APP IS STILL A WIP, BUT TAKE A PEEK AT THE DESIGN ON FIGMA:
           </p>
-          <img
-            className="screme-figma__icon"
-            src={`${base}/s.creme-app-icon.png`}
-            alt="s.crème app icon"
-            width={500}
-            height={500}
-            loading="lazy"
-          />
+          <a
+            className="screme-figma__link"
+            href="https://www.figma.com/design/Kl9TKE2Hb3hBsOldkfTs2c/s.creme?node-id=0-1&t=ikG6ziRblniiUeQ5-1"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              className="screme-figma__icon"
+              src={`${base}/s.creme-app-icon.png`}
+              alt="s.crème app icon — open Figma design"
+              width={500}
+              height={500}
+              loading="lazy"
+            />
+          </a>
         </div>
       </section>
     </article>

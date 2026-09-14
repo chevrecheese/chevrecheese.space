@@ -1403,13 +1403,13 @@ h3.sah-heading.sah-figma {
 .screme-figma {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.25rem;
   padding-top: 0.5rem;
-  width: fit-content;
-  max-width: 100%;
+  width: max-content;
+  max-width: none;
   margin-inline: auto;
   min-width: 0;
 }
@@ -1421,6 +1421,11 @@ h3.sah-heading.sah-figma {
   text-transform: uppercase;
   /* Mobile: allow wrap so uppercase line doesn’t overflow */
   white-space: normal;
+}
+
+.screme-figma__link {
+  flex-shrink: 0;
+  line-height: 0;
 }
 
 .screme-figma__icon {
@@ -1492,9 +1497,8 @@ h3.sah-heading.sah-figma {
   }
 
   .screme-figma {
-    /* Prefer a single row; wrap icon below if copy + button won’t fit */
-    flex-wrap: wrap;
-    gap: 2rem;
+    flex-wrap: nowrap;
+    gap: 1.25rem;
   }
 }
 
@@ -1620,7 +1624,7 @@ h3.sah-heading.sah-figma {
   }
 
   .screme-figma {
-    gap: 2rem;
+    gap: 1.25rem;
     padding-top: 1rem;
   }
 
@@ -1689,8 +1693,9 @@ h3.sah-heading.sah-figma {
   }
 
   .screme-figma {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
   }
 }
 
