@@ -532,7 +532,7 @@ h3.sah-heading.sah-kicker--block {
 .sah-finale__note {
   margin: 48px 0 0;
   max-width: 22rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: 0.06em;
@@ -788,7 +788,7 @@ h3.sah-heading.sah-figma {
     justify-self: end;
     margin: 0;
     text-align: left;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
   .sah-tilt {
@@ -824,6 +824,281 @@ h3.sah-heading.sah-figma {
   max-width: 720px;
 }
 
+/* Attention Ceremony — desktop.png layout (colors/type inherit site defaults) */
+.page--attn {
+  max-width: none;
+  width: auto;
+  margin-left: 8vw;
+  margin-right: 8vw;
+  padding: 2rem 0 4rem;
+}
+
+.attn-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.attn-copy {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+}
+
+.attn-stage {
+  position: relative;
+  min-height: clamp(28rem, 58vw, 42rem);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.attn-copy--intro,
+.attn-copy--collab {
+  /* Shared width so both blocks match; sized for ~3 intro lines on desktop */
+  width: min(49.375rem, 65%);
+  max-width: none;
+  text-align: left;
+}
+
+.attn-copy--intro {
+  position: relative;
+  z-index: 2;
+}
+
+.attn-copy--collab {
+  position: absolute;
+  z-index: 2;
+  top: 18%;
+  right: 0;
+}
+
+.attn-copy--privacy {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  width: min(36rem, 90%);
+  text-align: center;
+}
+
+.attn-deco {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.attn-deco--boat {
+  left: 6%;
+  top: 38%;
+  width: min(28.6%, 260px);
+}
+
+.attn-deco--fly1 {
+  left: 42%;
+  top: 22%;
+  width: min(16.1%, 138px);
+  transform: rotate(-18deg);
+}
+
+.attn-deco--fly2 {
+  right: 22%;
+  top: 28%;
+  width: min(13.8%, 126.5px);
+  transform: rotate(-22deg);
+}
+
+.attn-deco--tail-green {
+  left: 2%;
+  top: 52%;
+  width: min(27%, 240px);
+}
+
+.attn-deco--tail-purple {
+  right: 2%;
+  top: 0;
+  width: min(19.2%, 180px);
+}
+
+.attn-deco--tail-pink {
+  left: 50%;
+  bottom: 0;
+  width: min(14%, 130px);
+  transform: translateX(-40%);
+}
+
+.attn-mid-deco {
+  display: contents;
+}
+
+.attn-shots {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  margin: 0;
+}
+
+.attn-shot {
+  position: relative;
+  margin: 0;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.attn-shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+}
+
+.attn-shot--4 {
+  flex: 0.85 1 0;
+}
+
+.attn-deco--fly3 {
+  position: absolute;
+  right: -6%;
+  bottom: -8%;
+  width: min(48.3%, 126.5px);
+  z-index: 2;
+  transform: rotate(12deg);
+}
+
+.attn-credit {
+  margin: 1.75rem 0 0;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.attn-credit a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  word-break: break-all;
+}
+
+@media (max-width: 1023px) {
+  .page--attn {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
+
+  .attn-stage {
+    position: relative;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .attn-copy--intro,
+  .attn-copy--collab,
+  .attn-copy--privacy {
+    position: static;
+    max-width: 36rem;
+    width: 100%;
+    transform: none;
+    text-align: center;
+  }
+
+  .attn-copy--intro {
+    order: 1;
+  }
+
+  .attn-deco--boat {
+    position: static;
+    order: 2;
+    width: min(54.6%, 260px);
+    margin: 0 auto;
+  }
+
+  .attn-deco--fly1 {
+    position: absolute;
+    left: auto;
+    right: 6%;
+    top: 14%;
+    width: min(25.3%, 115px);
+    transform: rotate(20deg);
+  }
+
+  .attn-copy--collab {
+    order: 3;
+  }
+
+  .attn-mid-deco {
+    order: 4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .attn-deco--fly2,
+  .attn-deco--tail-green,
+  .attn-deco--tail-pink {
+    position: static;
+    width: min(26%, 110px);
+    margin: 0;
+    transform: none;
+  }
+
+  .attn-deco--fly2 {
+    transform: rotate(-16deg);
+    width: min(23%, 103.5px);
+  }
+
+  .attn-deco--tail-green {
+    width: min(39%, 165px);
+  }
+
+  .attn-deco--tail-purple {
+    display: none;
+  }
+
+  .attn-copy--privacy {
+    order: 5;
+  }
+
+  .attn-shots {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .attn-shot--4 {
+    flex: none;
+  }
+
+  .attn-deco--fly3 {
+    width: min(32.2%, 115px);
+    right: 4%;
+    bottom: -4%;
+  }
+
+  .attn-credit {
+    text-align: left;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .attn-shots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
 .case-header h1 {
   font-size: 1.75rem;
   font-weight: 700;
@@ -832,7 +1107,7 @@ h3.sah-heading.sah-figma {
 }
 
 .case-lead {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
 }
 
 .case-header p,
@@ -868,7 +1143,7 @@ h3.sah-heading.sah-figma {
 .case-note,
 .case-credit {
   margin-top: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--color-text);
 }
 
@@ -887,28 +1162,536 @@ h3.sah-heading.sah-figma {
   grid-column: 1 / -1;
 }
 
-/* s.crème */
-.screme-hero {
+/* s.crème — cream case study matching desktop1 / desktop2 templates */
+.page--screme {
+  --screme-bg: var(--color-bg-about);
+  --screme-text: var(--color-text-about);
+  max-width: none;
+  width: auto;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  padding: 1.5rem 0 5rem;
+  color: var(--screme-text);
+}
+
+.page--screme .screme-copy {
+  margin: 0;
+  text-transform: none;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: var(--screme-text);
+}
+
+.screme-marquee {
+  display: none;
+  /* Break out of .page--screme 15vw side margins → full viewport */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: 0;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  overflow: hidden;
+}
+
+.screme-marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: screme-marquee-scroll 40s linear infinite;
+}
+
+.screme-marquee__svg {
+  flex-shrink: 0;
+  width: 100vw;
+  height: auto;
+  aspect-ratio: 1400 / 140;
+  display: block;
+  overflow: visible;
+}
+
+.screme-marquee__text {
+  fill: var(--screme-text);
+  font-family: var(--font-nav);
+  font-size: 42px;
+  /* Tightened so 5 repeats leave ~16px ink gutters around stars (see SCreme.jsx). */
+  letter-spacing: -0.058em;
+}
+
+.screme-marquee__star {
+  pointer-events: none;
+}
+
+@keyframes screme-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screme-marquee__track {
+    animation: none;
+  }
+}
+
+.screme-mobile-title {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 1.5rem auto 2.5rem;
+  padding: 0 0.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 14vw, 3.4rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--screme-text);
+  transform: rotate(-12deg);
+  transform-origin: center;
+  animation: screme-title-in 0.9s ease-out both;
 }
 
-.screme-hero__icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 14px;
+.screme-mobile-title span {
+  font-size: 0.45em;
+  align-self: flex-start;
+  margin-top: 0.15em;
 }
 
-.screme-hero h1 {
-  margin: 0;
-  font-size: 1.75rem;
-  font-weight: 700;
+.screme-intro__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.screme-mockups {
-  margin-top: 2rem;
+/* Beat `.page--screme .screme-copy { margin: 0 }` so top spacing actually applies */
+.page--screme .screme-copy.screme-copy--vision {
+  margin-top: 3rem;
+  max-width: 40rem;
+}
+
+.screme-collage {
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 1 / 1.15;
+  margin: 0.5rem auto 1rem;
+  animation: screme-collage-in 1s ease-out 0.15s both;
+}
+
+.screme-collage__img {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.screme-collage__img--a {
+  left: 4%;
+  top: 2%;
+  width: 48%;
+  aspect-ratio: 3 / 4;
+  object-position: center 35%;
+  transform: rotate(9deg);
+  z-index: 3;
+}
+
+.screme-collage__img--b {
+  right: 2%;
+  top: 0;
+  width: 50%;
+  aspect-ratio: 3 / 4;
+  object-position: center;
+  transform: translateX(5%) rotate(-14deg);
+  z-index: 1;
+}
+
+.screme-collage__img--c {
+  left: 18%;
+  bottom: 0;
+  width: 58%;
+  aspect-ratio: 3 / 4;
+  object-position: center 40%;
+  transform: translate(5%, 5%) rotate(5deg);
+  z-index: 2;
+}
+
+.screme-lead {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 3.8vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--screme-text);
+}
+
+/* Controlled line breaks: 3 lines <1024, 2 lines ≥1024 */
+.screme-lead__br--desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .screme-lead__br--desktop {
+    display: block;
+  }
+
+  .screme-lead__br--mobile {
+    display: none;
+  }
+}
+
+.screme-product {
+  margin-top: clamp(3rem, 8vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+.screme-product div {
+  justify-content: center;
+}
+
+.screme-product__rank {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.screme-mockup-pair {
+  display: flex;
+  gap: clamp(0.65rem, 2vw, 1.25rem);
+  justify-content: center;
+  width: min(100%, 480px);
+  animation: screme-mockups-in 0.85s ease-out 0.2s both;
+}
+
+.screme-mockup-pair img,
+.screme-mockup-solo {
+  /* Assets already include rounded corners; CSS radius was clipping them. */
+  width: min(42vw, 220px);
+  height: auto;
+}
+
+.screme-copy--rank {
+  text-align: center;
+  max-width: 28rem;
+}
+
+.screme-product__radar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem 1.25rem;
+  align-items: start;
+}
+
+.screme-product__radar-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.screme-mockup-solo {
+  justify-self: end;
+}
+
+.screme-figma {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 0.5rem;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  min-width: 0;
+}
+
+.page--screme .screme-copy.screme-copy--figma {
+  flex: 0 0 auto;
+  width: max-content;
+  max-width: 100%;
+  text-transform: uppercase;
+  /* Mobile: allow wrap so uppercase line doesn’t overflow */
+  white-space: normal;
+}
+
+.screme-figma__icon {
+  width: clamp(54px, 13.5vw, 82.5px);
+  height: auto;
+  border-radius: 28%;
+  flex-shrink: 0;
+}
+
+@keyframes screme-title-in {
+  from {
+    opacity: 0;
+    transform: rotate(-12deg) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-12deg) translateY(0);
+  }
+}
+
+@keyframes screme-collage-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes screme-collage-in-nudge {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-20% + 18px)) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-20%) scale(1);
+  }
+}
+
+@keyframes screme-mockups-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .page--screme {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .page--screme .screme-copy.screme-copy--figma {
+    /* One line when it fits; content-sized so gap stays 3rem (no flex grow) */
+    white-space: nowrap;
+    flex: 0 0 auto;
+    width: max-content;
+    max-width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .screme-figma {
+    /* Prefer a single row; wrap icon below if copy + button won’t fit */
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page--screme .screme-copy,
+  .page--screme .screme-copy.screme-copy--figma {
+    font-size: 1rem;
+  }
+
+  .case-lead,
+  .case-note,
+  .case-credit,
+  .sah-finale__note {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .page--screme {
+    padding-top: 2rem;
+  }
+
+  .screme-marquee {
+    display: block;
+  }
+
+  .screme-mobile-title {
+    display: none;
+  }
+
+  .screme-intro__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+    grid-template-areas:
+      'p1 collage'
+      'p2 collage'
+      'lead collage';
+    column-gap: clamp(2rem, 4vw, 3.5rem);
+    row-gap: 1.5rem;
+    align-items: start;
+  }
+
+  .screme-copy--p1 {
+    grid-area: p1;
+  }
+
+  .screme-copy--p2 {
+    grid-area: p2;
+  }
+
+  .screme-lead {
+    grid-area: lead;
+    font-size: clamp(1.35rem, 2vw, 1.85rem);
+    margin-top: 0.75rem;
+  }
+
+  .page--screme .screme-copy.screme-copy--vision {
+    margin-top: 3rem;
+    max-width: 36rem;
+  }
+
+  .screme-collage {
+    grid-area: collage;
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 1 / 1.08;
+    margin: 0 0 0 auto;
+    justify-self: end;
+    align-self: center;
+  }
+
+  /* Desktop under 1024: shift collage up 20% */
+  @media (max-width: 1023px) {
+    .screme-collage {
+      animation: screme-collage-in-nudge 1s ease-out 0.15s both;
+    }
+  }
+
+  .screme-collage__img--a {
+    left: 0;
+    top: 6%;
+    width: 47%;
+    transform: rotate(10deg);
+  }
+
+  .screme-collage__img--b {
+    right: 0;
+    top: -2%;
+    width: 50%;
+    transform: translateX(5%) rotate(-16deg);
+  }
+
+  .screme-collage__img--c {
+    left: 14%;
+    bottom: 0;
+    width: 58%;
+    transform: translate(5%, 5%) rotate(6deg);
+  }
+
+  .screme-mockup-pair img,
+  .screme-mockup-solo {
+    width: min(18vw, 240px);
+  }
+
+  .screme-product__radar {
+    /* Hug content so copy + mockup sit close; avoid 1fr middle void */
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+    grid-template-columns: minmax(0, max-content) auto;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .screme-product__radar-copy {
+    max-width: 28rem;
+    gap: 2rem;
+  }
+
+  .screme-mockup-solo {
+    justify-self: start;
+  }
+
+  .screme-figma {
+    gap: 2rem;
+    padding-top: 1rem;
+  }
+
+  .screme-figma__icon {
+    width: 90px;
+    flex-shrink: 0;
+  }
+
+  /* Rank: mockups + copy in one horizontal row (same desktop breakpoint as product) */
+  .screme-product__rank {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .screme-mockup-pair {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .screme-copy--rank {
+    text-align: left;
+    flex: 1 1 auto;
+    max-width: 20rem;
+    min-width: 0;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 899px) {
+  /* mobile1: title → p1 → collage → p2 → lead; vision follows (mobile2 start) */
+  .screme-intro__grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .screme-copy--p1 {
+    order: 1;
+  }
+
+  .screme-collage {
+    order: 2;
+  }
+
+  .screme-copy--p2 {
+    order: 3;
+  }
+
+  .screme-lead {
+    order: 4;
+  }
+
+  .screme-product {
+    margin-top: 2.5rem;
+  }
+
+  .screme-product__radar {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .screme-mockup-solo {
+    justify-self: center;
+    width: min(58vw, 260px);
+  }
+
+  .screme-figma {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Chainmaille */

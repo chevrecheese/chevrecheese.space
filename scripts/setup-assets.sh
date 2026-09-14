@@ -35,6 +35,58 @@ resize_max() {
   local quality="${4:-78}"
   mkdir -p "$(dirname "$dest")"
 
+  # Prefer Pillow / ImageMagick: bake EXIF orientation into pixels.
+  # `sips -Z` can emit black frames for some iPhone JPEGs with orientation tags.
+  if have python3 && python3 -c '
+import sys
+from pathlib import Path
+try:
+    from PIL import Image, ImageOps
+except ImportError:
+    sys.exit(2)
+src, dest, max_s, q = sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4])
+im = ImageOps.exif_transpose(Image.open(src))
+w, h = im.size
+long = max(w, h)
+if long > max_s:
+    scale = max_s / long
+    im = im.resize((round(w * scale), round(h * scale)), Image.Resampling.LANCZOS)
+if Path(dest).suffix.lower() in {".jpg", ".jpeg"}:
+    if im.mode not in ("RGB", "L"):
+        im = im.convert("RGB")
+    im.save(dest, "JPEG", quality=q, optimize=True)
+else:
+    im.save(dest)
+' "$src" "$dest" "$max" "$quality"
+  then
+    echo "  copied: $(basename "$dest") (resized)"
+    return
+  fi
+
+  if have magick; then
+    case "$dest" in
+      *.jpg|*.jpeg)
+        magick "$src" -auto-orient -strip -resize "${max}x${max}>" -quality "$quality" "$dest"
+        ;;
+      *)
+        magick "$src" -auto-orient -strip -resize "${max}x${max}>" "$dest"
+        ;;
+    esac
+    echo "  copied: $(basename "$dest") (resized)"
+    return
+  elif have convert; then
+    case "$dest" in
+      *.jpg|*.jpeg)
+        convert "$src" -auto-orient -strip -resize "${max}x${max}>" -quality "$quality" "$dest"
+        ;;
+      *)
+        convert "$src" -auto-orient -strip -resize "${max}x${max}>" "$dest"
+        ;;
+    esac
+    echo "  copied: $(basename "$dest") (resized)"
+    return
+  fi
+
   # Skip resize when already within max (sips -Z can upscale; avoid that).
   local dims w h long
   dims=$(image_size "$src" || true)
@@ -49,14 +101,6 @@ resize_max() {
             sips -s format jpeg -s formatOptions "$quality" "$src" --out "$dest" >/dev/null
             echo "  copied: $(basename "$dest") (recompressed)"
             return
-          elif have magick; then
-            magick "$src" -quality "$quality" "$dest"
-            echo "  copied: $(basename "$dest") (recompressed)"
-            return
-          elif have convert; then
-            convert "$src" -quality "$quality" "$dest"
-            echo "  copied: $(basename "$dest") (recompressed)"
-            return
           fi
           ;;
       esac
@@ -67,32 +111,16 @@ resize_max() {
   fi
 
   if have sips; then
-    sips -Z "$max" "$src" --out "$dest" >/dev/null
+    local tmp
+    tmp="$(mktemp "${TMPDIR:-/tmp}/resize_max.XXXXXX.jpg")"
+    sips -s format jpeg "$src" --out "$tmp" >/dev/null
+    sips -Z "$max" "$tmp" --out "$dest" >/dev/null
     case "$dest" in
       *.jpg|*.jpeg)
         sips -s format jpeg -s formatOptions "$quality" "$dest" --out "$dest" >/dev/null
         ;;
     esac
-    echo "  copied: $(basename "$dest") (resized)"
-  elif have magick; then
-    case "$dest" in
-      *.jpg|*.jpeg)
-        magick "$src" -resize "${max}x${max}>" -quality "$quality" "$dest"
-        ;;
-      *)
-        magick "$src" -resize "${max}x${max}>" "$dest"
-        ;;
-    esac
-    echo "  copied: $(basename "$dest") (resized)"
-  elif have convert; then
-    case "$dest" in
-      *.jpg|*.jpeg)
-        convert "$src" -resize "${max}x${max}>" -quality "$quality" "$dest"
-        ;;
-      *)
-        convert "$src" -resize "${max}x${max}>" "$dest"
-        ;;
-    esac
+    rm -f "$tmp"
     echo "  copied: $(basename "$dest") (resized)"
   else
     cp "$src" "$dest"

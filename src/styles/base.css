@@ -26,10 +26,40 @@ body,
 body {
   margin: 0;
   font-family: var(--font-serif);
+  font-size: 0.95rem;
   font-weight: 400;
   color: var(--color-text);
   background: var(--color-bg);
   line-height: 1.6;
+}
+
+/* Non-heading body copy site-wide */
+.page p {
+  font-size: 0.95rem;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .page p {
+    font-size: 1rem;
+  }
+
+  .about-copy p,
+  .about-contact-line {
+    font-size: 1rem;
+  }
+
+  .page--screme .screme-copy,
+  .page--screme .screme-copy.screme-copy--figma,
+  .case-lead,
+  .case-note,
+  .case-credit,
+  .sah-finale__note {
+    font-size: 1rem;
+  }
 }
 
 h1,
@@ -169,7 +199,7 @@ button {
 
 .about-contact-line {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   letter-spacing: 0.06em;
 }
 
@@ -256,5 +286,22 @@ body.page-theme--dark .nav-link {
 }
 
 body.page-theme--dark .nav-link--about {
+  color: var(--color-about);
+}
+
+body.page-theme--screme {
+  background: var(--color-bg-about);
+  color: var(--color-text-about);
+}
+
+body.page-theme--screme .site-header {
+  background: var(--color-bg-about);
+}
+
+body.page-theme--screme .nav-link {
+  color: var(--color-text-about);
+}
+
+body.page-theme--screme .nav-link--about {
   color: var(--color-about);
 }

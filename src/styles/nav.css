@@ -30,7 +30,7 @@
 
 .nav-link {
   font-family: var(--font-nav);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-decoration: none;
@@ -38,6 +38,12 @@
   color: var(--color-text);
   position: relative;
   white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+  .nav-link {
+    font-size: 1.3rem;
+  }
 }
 
 .nav-link--about {
@@ -95,7 +101,7 @@
   }
 
   .nav-link {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .nav-logo img {
