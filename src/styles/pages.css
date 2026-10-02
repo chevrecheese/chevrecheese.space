@@ -97,6 +97,11 @@
   margin-bottom: 0;
 }
 
+.sah-hero__copy a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .sah-overlap {
   position: relative;
   flex: 0 0 auto;

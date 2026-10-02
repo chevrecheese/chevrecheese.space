@@ -6,10 +6,18 @@ export default function SchoolAtHome() {
       <section className="sah-hero">
         <div className="sah-hero__copy">
           <p>
-            My friend Alisa runs a series of events titled School at Home. The concept is that we
-            are all professors and students. Each event, there are around 5–6 lectures by people,
-            ranging from various areas. Some examples from the past are: the science of flirting,
-            math as a language, music modes, and more.
+            My friend{' '}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfi3SK1I-bbZifWfiGqAnty57rSMO4zfphAz8Mm5LGbzwbrpQ/viewform"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Alisa
+            </a>{' '}
+            runs a series of events titled School at Home. The concept is that we are all
+            professors and students. Each event, there are around 5–6 lectures by people, ranging
+            from various areas. Some examples from the past are: the science of flirting, math as
+            a language, music modes, and more.
           </p>
           <p>
             As she sought to make these events more frequent and open to a larger audience, she
