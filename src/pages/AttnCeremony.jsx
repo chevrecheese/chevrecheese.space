@@ -14,14 +14,14 @@ export default function AttnCeremony() {
 
       <section className="attn-stage" aria-label="introduction">
         <p className="attn-copy attn-copy--intro">
-          A few months back, my friend alisa (the same friend who runs school at home) ran her first
-          retreat. the themes of this retreat were attention and ceremony. we explored giving and
+          A few months back, my friend Alisa(the same friend who runs school@home) ran her first
+          retreat. The themes of this retreat were attention and ceremony. We explored giving and
           receiving attention, and the ceremony of it all.
         </p>
 
         <p className="attn-copy attn-copy--collab">
-          After the retreat, i worked with another attendee, mina, to design a zine to encapsulate
-          our time there. we designed, trimmed, and hand-bound 9 zines for all attendees of the
+          After the retreat, I worked with another attendee, Mina, to design a zine to encapsulate
+          our time there. We designed, printed, trimmed, and hand-bound 9 zines for all attendees of the
           retreat.
         </p>
 
@@ -68,7 +68,9 @@ export default function AttnCeremony() {
             loading="lazy"
           />
           <p className="attn-copy attn-copy--privacy">
-            To respect everyone&apos;s privacy, here are some select shots from the zine
+            To respect everyone&apos;s privacy,
+            <br className="attn-copy__br attn-copy__br--mobile" /> here are
+            some select shots from the zine:
           </p>
           <img
             className="attn-deco attn-deco--tail-pink"
@@ -139,7 +141,7 @@ export default function AttnCeremony() {
             loading="lazy"
           />
           <div className="attn-credit__row">
-            <span>Mina&apos;s IG:</span>
+            <span>Mina&apos;s ig:</span>
             <a
               href="https://www.instagram.com/meenerssss/"
               target="_blank"

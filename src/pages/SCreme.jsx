@@ -112,11 +112,11 @@ export default function SCreme() {
 
         <div className="screme-intro__grid">
           <p className="screme-copy screme-copy--p1">
-            I have been a soft serve ice cream fanatic since childhood. To emphasize,
-            specifically soft serve, not &ldquo;hard&rdquo; ice cream. Since moving to NYC,
-            I&apos;ve noticed that there are a lot of places that offer soft serve seasonally,
-            and not just ice cream shops. You&apos;ll find really interesting good quality soft
-            serve at some speakeasies!
+            I have been a soft serve ice cream fanatic since childhood (to emphasize,
+            specifically soft serve, not &ldquo;hard&rdquo; ice cream). Since moving to nyc,
+            I&apos;ve noticed that there are a lot of businesses that offer soft serve seasonally,
+            and not just ice cream shops. You&apos;ll even find uniquely flavoured good quality
+            soft serve at some speakeasies!
           </p>
 
           <div className="screme-collage">
@@ -148,28 +148,28 @@ export default function SCreme() {
 
           <p className="screme-copy screme-copy--p2">
             There are many Instagram food accounts that seem to share this passion for soft
-            serve, but there&apos;s no comprehensive list for all the soft serve that NYC has to
+            serve, but there&apos;s no comprehensive list for all the soft serve that nyc has to
             offer. A list like that would have to be updated relatively frequently. As someone
-            who maintains many bookmarks on Google Maps sorted into food categories, this got me
+            who maintains many bookmarks on Google maps sorted into food categories, this got me
             thinking: how is there no better way to map out all places that offer soft serve and
             also share that with others? I also want other people&apos;s recommendations as well.
           </p>
 
           <h2 className="screme-lead">
-            Enter s.crème:
+            ENTER S.CRÈME:
             <br className="screme-lead__br screme-lead__br--mobile" />{' '}
-            a soft-serve app
+            A SOFT-SERVE APP
             <br className="screme-lead__br screme-lead__br--desktop" />{' '}
-            for
+            FOR
             <br className="screme-lead__br screme-lead__br--mobile" />{' '}
-            the people by the people
+            THE PEOPLE BY THE PEOPLE
           </h2>
         </div>
 
         <p className="screme-copy screme-copy--vision">
           The vision for this app is simple: users should be able to review any business that
-          offers soft serve. The review will be structured by the 5 qualities that I believe are
-          essential to the soft serve experience™. The qualities are as follows: sweetness,
+          offers soft serve. the review will be structured by the 5 qualities that I believe are
+          essential to the soft serve experience™. the qualities are as follows: sweetness,
           creaminess, flavours, cones, naturalness.
         </p>
       </section>
@@ -205,7 +205,7 @@ export default function SCreme() {
               rankings of the 5 qualities.
             </p>
             <p className="screme-copy">
-              If the business hasn&apos;t been added already to the app, then the user can add it.
+              If the business hasn&apos;t already been added to the app, then the user can add it.
             </p>
           </div>
           <img

@@ -616,211 +616,383 @@ h3.sah-heading.sah-figma {
   mix-blend-mode: multiply;
 }
 
+@media (min-width: 769px) {
+  .sah-mobile-view {
+    display: none !important;
+  }
+}
+
 @media (max-width: 768px) {
+  .sah-desktop-view {
+    display: none !important;
+  }
+
   .page--school-at-home {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
   }
 
-  .sah-hero,
-  .sah-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.5rem;
+  /* --- Mobile 1 (mobile1.png) --- */
+  .sah-m-p1 {
+    margin: 0 0 1.5rem;
+    text-align: left;
   }
 
-  .sah-overlap {
-    margin-left: 0;
+  .sah-m-p1 a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
-  .sah-arches {
-    align-items: stretch;
+  .sah-m-music-wrap {
+    width: 100%;
+    margin: 0 0 1.75rem;
+    display: flex;
+    justify-content: center;
   }
 
-  .sah-arches__brainstorm {
+  .sah-m-music-img {
+    width: 68%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 28px;
+    transform: rotate(-3.5deg);
+    transform-origin: center;
+    display: block;
+  }
+
+  .sah-m1 {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .sah-m-p2 {
+    position: relative;
+    z-index: 3;
+    margin: 0 0 0;
+    text-align: left;
+  }
+
+  .sah-m-mosaic-1 {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.15rem;
+    margin-top: -2.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .sah-m-mosaic-1__left {
+    flex: 0 0 46%;
+    width: 46%;
+    position: relative;
+    z-index: 1;
+    padding-top: clamp(5.5rem, 22vw, 7.5rem);
+  }
+
+  .sah-m-arch--brainstorm {
+    width: 100%;
+    aspect-ratio: 2 / 2.3;
+    object-fit: cover;
+    border-radius: 999px 999px 12px 12px;
+    display: block;
+  }
+
+  .sah-m-mosaic-1__right {
+    flex: 0 0 50%;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    width: 100%;
+    align-items: flex-end;
+    gap: 2.25rem;
+    position: relative;
+    z-index: 2;
   }
 
-  .sah-arches__logo-plan {
-    width: 100%;
-    transform: none;
-    /* Match centered brainstorm arch (min(70%, 322px)) + translateX(-5%) */
-    --logo-arch-inset: calc((100% - min(70%, 322px)) / 2 - 5%);
+  .sah-m-moz-img {
+    width: 90%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 28px;
+    transform: rotate(8deg);
+    transform-origin: center;
+    display: block;
+    position: relative;
+    z-index: 1;
+    margin-right: -0.15rem;
   }
 
-  .sah-arches__logo-plan-copy .sah-heading {
-    text-align: center;
-    position: static;
-    left: auto;
-    transform: none;
-    max-width: none;
-  }
-
-  .sah-arches__logo-plan-copy p {
+  .sah-m-heading--brainstorm {
     text-align: left;
-  }
-
-  .sah-arches .sah-arch {
-    width: min(70%, 322px);
-    border-radius: 999px 999px 10px 10px;
-  }
-
-  .sah-arches__logo-img {
-    width: min(45%, 220px);
-    border-radius: 999px 999px 10px 10px;
-  }
-
-  .sah-arches__logo-plan-copy p::before {
-    width: min(45%, 220px);
-    height: min(67.5vw, 330px);
-    margin-top: calc(min(67.5vw, 330px) * -0.5);
-    border-radius: 999px 999px 10px 10px;
-  }
-
-  .sah-heading {
     white-space: normal;
-    text-align: center;
-  }
-
-  .sah-stagger__label {
+    width: 100%;
     margin: 0;
-    white-space: nowrap;
-    text-align: center;
+    position: relative;
+    z-index: 2;
   }
 
-  .sah-stagger {
-    --stagger-left-w: min(42vw, 220px);
-    --stagger-right-w: min(46vw, 250px);
-    --stagger-gap: 0.75rem;
-    --stagger-left-h: calc(var(--stagger-left-w) / 0.7);
-    width: 100%;
-    max-width: none;
-    margin-left: 0;
-    margin-right: 0;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    grid-template-areas:
-      'left label'
-      'caption right';
-    column-gap: 0.85rem;
-    row-gap: 2rem;
-    justify-content: stretch;
-  }
-
-  .sah-stagger__left {
-    width: var(--stagger-left-w);
-    max-width: 100%;
-    justify-self: start;
-  }
-
-  .sah-stagger__label {
-    margin-top: calc(var(--stagger-left-h) * 0.35);
-    justify-self: start;
-    align-self: start;
+  /* --- Mobile 2 (mobile2.png) --- */
+  .sah-m-heading--logo {
+    text-align: left;
     white-space: normal;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .sah-m-p--logo {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 0.75rem;
     text-align: left;
   }
 
-  .sah-stagger__right {
-    width: var(--stagger-right-w);
-    max-width: 100%;
-    margin-top: 0;
-    justify-self: end;
+  .sah-m-mosaic-2 {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
   }
 
-  .sah-stagger__caption {
-    max-width: none;
-    width: auto;
-    margin-right: 0;
-    justify-self: stretch;
-    align-self: center;
-    text-align: left;
-    font-size: 0.85rem;
-  }
-
-  .sah-overlap,
-  .sah-row--img-left .sah-arch,
-  .sah-row--text-left .sah-arch,
-  .sah-row--text-left .sah-rounded {
-    width: 100%;
-    max-width: none;
-  }
-
-  .sah-overlap {
-    aspect-ratio: 5 / 4;
-    min-height: 280px;
-  }
-
-  .sah-pair {
+  .sah-m-mosaic-2__left {
+    flex: 0 0 48%;
+    width: 48%;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 0.85rem;
+    padding-top: 0.35rem;
+    position: relative;
+    z-index: 1;
   }
 
-  .sah-pair img {
-    width: 88%;
-  }
-
-  /* template_4 / mobile4: heading → tilted pair → note → figma */
-  .sah-finale {
-    display: grid;
-    grid-template-areas:
-      'heading'
-      'tilt'
-      'note';
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-  }
-
-  .sah-finale__copy {
-    display: contents;
-  }
-
-  .sah-finale .sah-kicker--block,
-  .sah-finale h3.sah-heading.sah-kicker--block {
-    grid-area: heading;
-    margin: 32px 0 0;
-    max-width: none;
-    justify-self: center;
-    text-align: center;
-  }
-
-  .sah-finale__note {
-    grid-area: note;
-    max-width: 16rem;
-    justify-self: end;
+  .sah-m-kicker {
+    text-align: left;
+    white-space: normal;
     margin: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sah-m-icon-img--1 {
+    width: 94%;
+    max-width: none;
+    aspect-ratio: 3 / 4.4;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    transform: rotate(0deg);
+    transform-origin: center;
+    margin-left: 0;
+  }
+
+  .sah-m-mosaic-2__right {
+    flex: 0 0 50%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    position: relative;
+    z-index: 2;
+    margin-top: 0;
+  }
+
+  .sah-m-arch--logo {
+    width: 80%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 999px 999px 12px 12px;
+    display: block;
+    position: relative;
+    z-index: 2;
+    transform: rotate(0deg);
+    transform-origin: 70% 40%;
+    margin-left: auto;
+    margin-right: 14%;
+  }
+
+  .sah-m-icon-img--2 {
+    width: 92%;
+    max-width: none;
+    aspect-ratio: 3 / 3.75;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+    position: relative;
+    z-index: 3;
+    transform: rotate(0deg);
+    transform-origin: center;
+    margin-top: 4.25rem;
+    margin-left: 0;
+  }
+
+  .sah-m-heading--attendance {
+    text-align: left;
+    white-space: normal;
+    margin: 2.25rem 0 1rem;
+  }
+
+  /* --- Mobile 3 (mobile3.png) --- */
+  .sah-m-p--attendance {
+    margin: 0 0 1.5rem;
+    text-align: left;
+  }
+
+  .sah-m-stagger {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .sah-m-stagger__row1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 0.85rem;
+  }
+
+  .sah-m-stagger__row2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 8px;
+    margin-top: -0.35rem;
+  }
+
+  .sah-m-stagger__col-left {
+    flex: 0 0 46%;
+    width: 46%;
+  }
+
+  .sah-m-stagger__col-right {
+    flex: 0 0 50%;
+    width: 50%;
+  }
+
+  .sah-m-stagger__arch-1 {
+    width: 100%;
+    aspect-ratio: 0.7 / 1;
+    object-fit: cover;
+    border-radius: 999px 999px 12px 12px;
+    display: block;
+  }
+
+  .sah-m-stagger__label {
+    text-align: left;
+    white-space: normal;
+    margin: 0 0 2.5rem 0;
+  }
+
+  .sah-m-stagger__caption {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    white-space: normal;
+    margin: 0 0 0.35rem 0;
+  }
+
+  .sah-m-stagger__arch-2 {
+    width: 108%;
+    aspect-ratio: 1.05 / 1;
+    object-fit: cover;
+    border-radius: 999px 999px 12px 12px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    margin-left: 0;
+  }
+
+  /* --- Mobile 4 (mobile4.png) --- */
+  .sah-m4 {
+    position: relative;
+    isolation: isolate;
+    z-index: 0;
+  }
+
+  .sah-m-heading--finale {
+    text-align: center;
+    white-space: normal;
+    margin: 2rem 0 1.5rem;
+  }
+
+  /* The stack is a fixed-proportion frame so both cards and their overlap
+     scale together; the box stops where the note begins, so card B spills
+     past the bottom edge the way it does in mobile4.png. */
+  .sah-m-tilt {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1.1;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .sah-m-tilt img {
+    position: absolute;
+    width: 46.4%;
+    aspect-ratio: 4 / 5;
+    border-radius: clamp(24px, 7vw, 38px);
+    object-fit: cover;
+  }
+
+  /* Upper-left card — CCW, behind */
+  .sah-m-tilt__a {
+    left: 13.8%;
+    top: 6%;
+    transform: rotate(-19deg);
+    z-index: 1;
+  }
+
+  /* Lower-right card — CW, in front, overlapping A's lower-right quadrant */
+  .sah-m-tilt__b {
+    left: 38.8%;
+    top: 50%;
+    transform: rotate(15deg);
+    z-index: 2;
+  }
+
+  /* Note sits over the bottom of the lower card */
+  .sah-m-note {
+    position: relative;
+    z-index: 2;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     text-align: left;
     font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
-  .sah-tilt {
-    grid-area: tilt;
-    min-height: min(70vw, 360px);
-    padding: 1.5rem 0;
-  }
-
-  .sah-tilt img {
-    width: min(48%, 200px);
-  }
-
-  .sah-tilt__a {
-    left: 0;
-    transform: rotate(18deg);
-  }
-
-  .sah-tilt__b {
-    left: -6%;
-    top: 22%;
-    transform: rotate(-10deg);
-  }
-
-  .sah-figma {
-    justify-content: flex-start;
+  .sah-m-figma {
+    display: block;
+    margin: 3.25rem 0 0;
     text-align: left;
-    margin-top: 2.5rem;
+    white-space: normal;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .sah-m-figma span {
+    display: inline;
+  }
+
+  .sah-m-figma a {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-left: 0.35rem;
+    line-height: 0;
+    text-decoration: none;
   }
 }
 
@@ -919,6 +1091,10 @@ h3.sah-heading.sah-figma {
   text-align: center;
   white-space: nowrap;
   pointer-events: auto;
+}
+
+.attn-copy__br--mobile {
+  display: none;
 }
 
 @media (min-width: 1024px) {
@@ -1149,7 +1325,7 @@ h3.sah-heading.sah-figma {
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: center;
-    gap: 0.5rem 0.75rem;
+    gap: 0.35rem 0.35rem;
     width: 100%;
     pointer-events: auto;
   }
@@ -1159,7 +1335,8 @@ h3.sah-heading.sah-figma {
     left: auto;
     top: auto;
     order: 1;
-    width: min(28%, 130px);
+    width: min(34%, 156px);
+    flex-shrink: 0;
     transform: rotate(-16deg);
   }
 
@@ -1168,27 +1345,33 @@ h3.sah-heading.sah-figma {
     position: static;
     margin: 0;
     transform: none;
+    flex-shrink: 0;
   }
 
   .attn-deco--tail-green {
     order: 2;
-    width: min(42%, 220px);
+    width: min(50%, 264px);
   }
 
   .attn-deco--tail-pink {
     order: 3;
-    width: min(22%, 100px);
+    width: min(26%, 120px);
   }
 
   .attn-copy--privacy {
     order: 5;
     flex: none;
-    width: max-content;
-    max-width: none;
+    flex-basis: 100%;
+    width: 100%;
+    max-width: 100%;
     align-self: center;
     left: auto;
     z-index: 2;
-    white-space: nowrap;
+    white-space: normal;
+  }
+
+  .attn-copy__br--mobile {
+    display: block;
   }
 
   .attn-shots {
@@ -1232,6 +1415,10 @@ h3.sah-heading.sah-figma {
   .attn-credit.about-social {
     margin: -6.5rem 2rem 0;
     position: relative;
+  }
+
+  .attn-credit__row > span {
+    white-space: nowrap;
   }
 }
 
@@ -1328,7 +1515,7 @@ h3.sah-heading.sah-figma {
 }
 
 .screme-marquee {
-  display: none;
+  display: block;
   /* Break out of .page--screme 15vw side margins → full viewport */
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -1380,28 +1567,21 @@ h3.sah-heading.sah-figma {
   }
 }
 
+/* Visual title is the scrolling marquee; keep an accessible h1 for screen readers. */
 .screme-mobile-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  margin: 1.5rem auto 2.5rem;
-  padding: 0 0.5rem;
-  font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 14vw, 3.4rem);
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--screme-text);
-  transform: rotate(-12deg);
-  transform-origin: center;
-  animation: screme-title-in 0.9s ease-out both;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .screme-mobile-title span {
-  font-size: 0.45em;
-  align-self: flex-start;
-  margin-top: 0.15em;
+  display: none;
 }
 
 .screme-intro__grid {
@@ -1628,6 +1808,10 @@ h3.sah-heading.sah-figma {
     margin-left: 1rem;
     margin-right: 1rem;
   }
+
+  .page--screme .screme-copy.screme-copy--figma {
+    max-width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1663,14 +1847,6 @@ h3.sah-heading.sah-figma {
 @media (min-width: 900px) {
   .page--screme {
     padding-top: 2rem;
-  }
-
-  .screme-marquee {
-    display: block;
-  }
-
-  .screme-mobile-title {
-    display: none;
   }
 
   .screme-intro__grid {
@@ -1800,18 +1976,72 @@ h3.sah-heading.sah-figma {
 }
 
 @media (max-width: 899px) {
-  /* mobile1: title → p1 → collage → p2 → lead; vision follows (mobile2 start) */
+  /* mobile1 + mobile2: single-column placement (ignore mockup colors/copy) */
+  .page--screme {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    padding-top: 0.75rem;
+    text-align: center;
+  }
+
+  .page--screme .screme-copy,
+  .page--screme .screme-lead {
+    text-align: center;
+  }
+
+  .screme-marquee {
+    margin-bottom: 1.25rem;
+  }
+
+  /* Wider-than-viewport segments so wave glyphs stay readable on narrow screens */
+  .screme-marquee__svg {
+    width: 270vw;
+  }
+
   .screme-intro__grid {
     display: flex;
     flex-direction: column;
+    gap: 1.75rem;
   }
 
+  /* mobile1 order: p1 → collage → p2 → lead; vision follows */
   .screme-copy--p1 {
     order: 1;
   }
 
   .screme-collage {
     order: 2;
+    width: min(94%, 360px);
+    aspect-ratio: 1 / 1.22;
+    margin: 0.25rem auto 0.5rem;
+  }
+
+  /* mobile1 collage: top-right / mid-left / bottom-right overlap */
+  .screme-collage__img--b {
+    right: 0;
+    top: 0;
+    left: auto;
+    width: 54%;
+    transform: rotate(-10deg);
+    z-index: 2;
+  }
+
+  .screme-collage__img--a {
+    left: 0;
+    top: 16%;
+    right: auto;
+    width: 52%;
+    transform: rotate(12deg);
+    z-index: 1;
+  }
+
+  .screme-collage__img--c {
+    left: auto;
+    right: 4%;
+    bottom: 0;
+    width: 56%;
+    transform: rotate(7deg);
+    z-index: 3;
   }
 
   .screme-copy--p2 {
@@ -1820,26 +2050,98 @@ h3.sah-heading.sah-figma {
 
   .screme-lead {
     order: 4;
+    margin-top: 0.25rem;
+    font-size: clamp(1.05rem, 4.4vw, 1.35rem);
   }
 
-  .screme-product {
+  /* Two lines on mobile: reuse desktop break after “app” */
+  .screme-lead__br--mobile {
+    display: none;
+  }
+
+  .screme-lead__br--desktop {
+    display: block;
+  }
+
+  .page--screme .screme-copy.screme-copy--vision {
     margin-top: 2.5rem;
+    max-width: none;
+  }
+
+  /* mobile2: pair → rank copy → radar copy → solo → figma */
+  .screme-product {
+    margin-top: 2.75rem;
+    gap: 2rem;
+  }
+
+  .screme-product__rank {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .screme-mockup-pair {
+    width: 100%;
+    max-width: 420px;
+    gap: 0.7rem;
+  }
+
+  .screme-mockup-pair img {
+    width: calc(50% - 0.35rem);
+    max-width: none;
+  }
+
+  .screme-copy--rank {
+    text-align: center;
+    max-width: none;
+    width: 100%;
   }
 
   .screme-product__radar {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .screme-product__radar-copy {
+    padding-top: 0;
+    gap: 1.25rem;
+    max-width: none;
   }
 
   .screme-mockup-solo {
     justify-self: center;
-    width: min(58vw, 260px);
+    align-self: center;
+    width: min(72vw, 290px);
+    margin-inline: auto;
   }
 
   .screme-figma {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    justify-content: center;
+    gap: 0.85rem 1rem;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding-top: 0.25rem;
+    text-align: center;
+  }
+
+  .page--screme .screme-copy.screme-copy--figma {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .screme-figma__icon {
+    width: clamp(64px, 18vw, 88px);
   }
 }
 
@@ -1901,7 +2203,9 @@ body.page-theme--design .site-header {
 }
 
 body.page-theme--chainmaille .nav-link,
-body.page-theme--design .nav-link {
+body.page-theme--design .nav-link,
+body.page-theme--chainmaille .nav-accordion-toggle,
+body.page-theme--design .nav-accordion-toggle {
   color: var(--color-text-about);
 }
 
