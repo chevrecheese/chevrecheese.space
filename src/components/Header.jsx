@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const leftLinks = [
@@ -12,33 +11,10 @@ const leftLinks = [
 ];
 
 export default function Header() {
-  const [navExpanded, setNavExpanded] = useState(false);
-
-  const handleToggle = () => {
-    setNavExpanded((current) => !current);
-  };
-
-  const closeNav = () => {
-    setNavExpanded(false);
-  };
-
   return (
     <header className="site-header">
-      <nav
-        className={`site-nav${navExpanded ? ' site-nav--expanded' : ''}`}
-        aria-label="Main"
-      >
-        <button
-          type="button"
-          className="nav-accordion-toggle"
-          aria-expanded={navExpanded}
-          aria-controls="site-nav-menu"
-          onClick={handleToggle}
-        >
-          §
-        </button>
-
-        <div className="nav-left" id="site-nav-menu">
+      <nav className="site-nav" aria-label="Main">
+        <div className="nav-left">
           {leftLinks.map(({ to, label, isActive }) => (
             <NavLink
               key={to}
@@ -47,7 +23,6 @@ export default function Header() {
               className={({ isActive: active }) =>
                 `nav-link${active ? ' nav-link--active' : ''}`
               }
-              onClick={closeNav}
               {...(isActive ? { isActive } : {})}
             >
               {label}
@@ -55,7 +30,7 @@ export default function Header() {
           ))}
         </div>
 
-        <NavLink to="/design" className="nav-logo" aria-label="Home" onClick={closeNav}>
+        <NavLink to="/design" className="nav-logo" aria-label="Home">
           <img
             src="/assets/logo.png"
             alt="chevrecheese"
@@ -71,7 +46,6 @@ export default function Header() {
             className={({ isActive }) =>
               `nav-link nav-link--about${isActive ? ' nav-link--active' : ''}`
             }
-            onClick={closeNav}
           >
             ABOUT
           </NavLink>

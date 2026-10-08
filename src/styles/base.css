@@ -94,10 +94,11 @@ button {
 }
 
 .page {
+  --page-gutter: 1.5rem;
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 2rem var(--page-gutter) 4rem;
 }
 
 .page--chainmaille {
@@ -246,8 +247,7 @@ body.page-theme--about .site-header {
   background: var(--color-bg-about);
 }
 
-body.page-theme--about .nav-link,
-body.page-theme--about .nav-accordion-toggle {
+body.page-theme--about .nav-link {
   color: var(--color-text-about);
 }
 
@@ -268,6 +268,20 @@ body.page-theme--about .nav-link--about {
     max-width: none;
   }
 
+  /* Stacked layout gives the wrap the full content width, so size the frame
+     off the wrap plus the page gutters: it still bleeds past the photo but
+     stops at the viewport edges instead of forcing a horizontal scroll. */
+  .about-photo-frame {
+    width: calc(100% + 2 * var(--page-gutter));
+    max-width: calc(100% + 2 * var(--page-gutter));
+  }
+
+  /* Keep the photo inside the frame's scribble now that the frame no longer
+     scales with it. */
+  .about-photo {
+    width: min(62%, 320px);
+  }
+
   .about-copy {
     max-width: none;
   }
@@ -282,8 +296,7 @@ body.page-theme--dark .site-header {
   background: var(--color-bg-dark);
 }
 
-body.page-theme--dark .nav-link,
-body.page-theme--dark .nav-accordion-toggle {
+body.page-theme--dark .nav-link {
   color: #f5f5f5;
 }
 
@@ -300,8 +313,7 @@ body.page-theme--screme .site-header {
   background: var(--color-bg-about);
 }
 
-body.page-theme--screme .nav-link,
-body.page-theme--screme .nav-accordion-toggle {
+body.page-theme--screme .nav-link {
   color: var(--color-text-about);
 }
 

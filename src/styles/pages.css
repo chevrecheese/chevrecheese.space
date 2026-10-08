@@ -2203,9 +2203,7 @@ body.page-theme--design .site-header {
 }
 
 body.page-theme--chainmaille .nav-link,
-body.page-theme--design .nav-link,
-body.page-theme--chainmaille .nav-accordion-toggle,
-body.page-theme--design .nav-accordion-toggle {
+body.page-theme--design .nav-link {
   color: var(--color-text-about);
 }
 
@@ -2232,6 +2230,7 @@ body.page-theme--design .nav-link--about {
   }
 
   .page {
-    padding: 1.5rem 1rem 3rem;
+    --page-gutter: 1rem;
+    padding: 1.5rem var(--page-gutter) 3rem;
   }
 }
