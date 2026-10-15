@@ -517,14 +517,16 @@ h3.sah-heading.sah-kicker--block {
   gap: 1.75rem;
   padding-top: 0.5rem;
   margin-left: 5vw;
-  transform: translateX(10vw);
+  /* .sah-tilt shifts -10vw toward this column, so cap the text to stop 16px
+     short of the leading card's rotated corner instead of running under it. */
+  max-width: min(100%, 34.8vw - 190px);
 }
 
 @media (max-width: 1023px) {
   .sah-finale__copy {
     margin-left: 0;
     margin-top: 32px;
-    transform: none;
+    max-width: none;
   }
 }
 
@@ -957,13 +959,13 @@ h3.sah-heading.sah-figma {
     z-index: 2;
   }
 
-  /* Note sits over the bottom of the lower card */
+  /* Clears the lower card where it spills past the stack's bottom edge */
   .sah-m-note {
     position: relative;
     z-index: 2;
     max-width: none;
     width: 100%;
-    margin: 0;
+    margin: clamp(32px, 8.5vw, 68px) 0 0;
     padding: 0;
     text-align: left;
     font-size: 0.95rem;
